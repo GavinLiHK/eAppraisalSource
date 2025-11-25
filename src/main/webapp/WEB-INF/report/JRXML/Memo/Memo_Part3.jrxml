@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2022-06-01T11:39:29 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Memo_Part3" pageWidth="496" pageHeight="751" whenNoDataType="AllSectionsNoDetail" columnWidth="496" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c6a3fe34-886d-480a-ae89-7183cb9f11f7">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="ReportID" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT REPLACE(MD.APP_INTERVIEW, utl_raw.cast_to_varchar2('F48FBFBD')) as APP_INTERVIEW, 
+--20240923 Remove chr(255) from the database value
+--chr(255) as APP_INTERVIEW_SPACE, 
+' ' as APP_INTERVIEW_SPACE, 
+--20240923 Remove chr(255) from the database value
+MD.APP_NAME, MD.IO_NAME,
+MD.IO_RANK, MD.IO_DATE
+,lengthb(MD.APP_INTERVIEW ) - length(MD.APP_INTERVIEW ) as APP_INTERVIEW_LEN
+FROM HA_HR_EA_MEMO_DETAILS MD
+WHERE MD.REPORT_ID = $P{ReportID}]]>
+	</queryString>
+	<field name="APP_INTERVIEW" class="java.lang.String"/>
+	<field name="APP_INTERVIEW_SPACE" class="java.lang.String"/>
+	<field name="APP_NAME" class="java.lang.String"/>
+	<field name="IO_NAME" class="java.lang.String"/>
+	<field name="IO_RANK" class="java.lang.String"/>
+	<field name="IO_DATE" class="java.sql.Timestamp"/>
+	<field name="APP_INTERVIEW_LEN" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="389" splitType="Stretch">
+			<staticText>
+				<reportElement key="txtIoSign" positionType="Float" mode="Opaque" x="3" y="306" width="116" height="50" forecolor="#000000" backcolor="#FFFFFF" uuid="67d7eb84-6b08-4f5b-8a29-47b22d9ab667"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Signature of 
+Interviewing Officer</style>
+會見人員簽署]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tIOSign" positionType="Float" mode="Opaque" x="124" y="320" width="90" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="56feedb7-8dea-4dfb-a842-e36fcca473e7"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IO_NAME}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-11" positionType="Float" mode="Opaque" x="119" y="320" width="5" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="652dad30-5d8e-4658-b3ca-705e55ef8f84"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-12" positionType="Float" mode="Opaque" x="214" y="320" width="5" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="8c0f1009-f038-4ab5-8b70-529c3fb52324"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtIoRank" positionType="Float" mode="Opaque" x="248" y="305" width="58" height="33" forecolor="#000000" backcolor="#FFFFFF" uuid="f3060541-e9ec-426a-bf48-f685be38e08e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">Rank</style>  職級]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tIoRank" positionType="Float" mode="Opaque" x="306" y="305" width="92" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="1218c31f-c165-4ab5-9b56-0810aa623ea0"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IO_RANK}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtIODate" positionType="Float" mode="Opaque" x="248" y="346" width="58" height="33" forecolor="#000000" backcolor="#FFFFFF" uuid="80d9ad1d-5448-4783-8010-5508080a1a72"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">Date</style>  日期]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="tIoDate" positionType="Float" mode="Opaque" x="306" y="346" width="92" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="0c2a8103-655c-45da-820b-0b4049e98687"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IO_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtPart1" positionType="Float" mode="Opaque" x="0" y="0" width="485" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="27386b68-632f-4acd-9a83-e95c4f1324a9"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Bold" pdfEncoding="CP1252">Part V: Record of Appraisal Interview</style>  第五部份: 評核會見記錄]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtAppSign" positionType="Float" mode="Opaque" x="3" y="252" width="116" height="31" forecolor="#000000" backcolor="#FFFFFF" uuid="c02a4cd3-9b55-408b-9e27-b2dee6eefac6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Signature of Appraisee</style>
+受評人簽署]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tAppSign" positionType="Float" mode="Opaque" x="124" y="266" width="90" height="35" forecolor="#000000" backcolor="#FFFFFF" uuid="8fb591ed-3188-4d0c-8614-b4551bd41a9e"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APP_NAME}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-13" positionType="Float" mode="Opaque" x="119" y="266" width="5" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="957979fb-e28a-42f6-916f-80065b4b0acd"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-14" positionType="Float" mode="Opaque" x="214" y="266" width="5" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="f1773623-36e8-4e40-bb0a-8ac45ced283e"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="tAppInterview" positionType="Float" mode="Transparent" x="0" y="28" width="496" height="160" forecolor="#000000" backcolor="#FFFFFF" uuid="000a1fb9-22c6-4093-83ca-76d7dde68d31">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{APP_INTERVIEW} != null)]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="5" leftPadding="5" rightPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ($F{APP_INTERVIEW_LEN}.intValue() > 0 ) ? $F{APP_INTERVIEW}.replaceAll("'","’").replaceAll("`","‘") : $F{APP_INTERVIEW} ) + $F{APP_INTERVIEW_SPACE}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="0">
+				<reportElement key="rectangle-1" positionType="Float" mode="Transparent" x="0" y="28" width="496" height="160" forecolor="#000000" backcolor="#FFFFFF" uuid="fed49784-4579-437a-a9c6-f467d46255a6">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{APP_INTERVIEW} == null)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

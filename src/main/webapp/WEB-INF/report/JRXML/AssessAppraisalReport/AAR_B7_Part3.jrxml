@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="AAR_B7_Part3"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="521"
+		 pageHeight="300"
+		 columnWidth="521"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<reportFont name="ReportTitle" isDefault="false" fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1250" isPdfEmbedded="false"/>
+	<parameter name="ReportID" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new java.lang.String("100")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new java.lang.String("C:\\iReport\\reports\\AssessAppraisalReport\\")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sr_pb_sa_box" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString><![CDATA[SELECT PERFORMANCE_BONUS_EO, SALARY_ADJUSTMENT_EO from
+HA_HR_EA_CONTRACT where REPORT_ID = $P{ReportID}]]></queryString>
+	<field name="PERFORMANCE_BONUS_EO" class="java.lang.String"/>
+	<field name="SALARY_ADJUSTMENT_EO" class="java.lang.String"/>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="292"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="0"
+						width="521"
+						height="38"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="txtPartB3Title-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" topPadding="5" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000" bottomPadding="5"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="Times New Roman" pdfFontName="Times-Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="Cp1250" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[(3) <style isBold="true" pdfFontName="Times-Bold">Recommendation on Granting of Merit Payment and Annual Salary Adjustment</style>
+<style size="10" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H">       建議是否給予工作表現獎金及每年薪金調整</style>]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="43"
+						width="521"
+						height="249"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="PB_SA_SubReport"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<subreportParameter  name="PerformanceBonus">
+						<subreportParameterExpression><![CDATA[$F{PERFORMANCE_BONUS_EO}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SalaryAdjustment">
+						<subreportParameterExpression><![CDATA[$F{SALARY_ADJUSTMENT_EO}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ReportDirectory">
+						<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ShowBoxLayout">
+						<subreportParameterExpression><![CDATA[new java.lang.Boolean(true)]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ReportID">
+						<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ParSpace">
+						<subreportParameterExpression><![CDATA[new java.lang.String("      ")]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ChiParSpace">
+						<subreportParameterExpression><![CDATA[new java.lang.String("       ")]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<!-- Modified on 20/09/2021 for directly use the jasper objects -->
+					<!--subreportExpression  class="java.lang.String"><![CDATA[$P{ReportDirectory}+ "PB_SA_Box.jasper"]]></subreportExpression-->
+					<subreportExpression><![CDATA[$P{sr_pb_sa_box}]]></subreportExpression>
+					<!-- End Modified on 20/09/2021 for directly use the jasper objects -->
+				</subreport>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

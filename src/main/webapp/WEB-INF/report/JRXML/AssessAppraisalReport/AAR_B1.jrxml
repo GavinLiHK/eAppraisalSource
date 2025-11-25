@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2022-06-02T10:33:56 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AAR_B1" pageWidth="529" pageHeight="790" columnWidth="529" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="458556b6-decc-4e03-b6b3-43722d6ba0ce">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="89"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="ReportDesc" fontName="Times New Roman" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<style name="ReportTitle" fontName="Times New Roman" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<parameter name="ReportID" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("582")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT REPLACE(O.KEY_OBJECTIVE, utl_raw.cast_to_varchar2('F48FBFBD')) as KEY_OBJECTIVE,
+--20240923 Remove chr(255) from the database value
+--chr(13) || chr(10) || chr(255) as KEY_OBJECTIVE_SPACE,
+chr(13) || chr(10) as KEY_OBJECTIVE_SPACE,
+--End 20240923 Remove chr(255) from the database value
+REPLACE(O.RESULTS_ACHIEVED, utl_raw.cast_to_varchar2('F48FBFBD')) as RESULTS_ACHIEVED,
+--20240923 Remove chr(255) from the database value
+--chr(13) || chr(10) || chr(255) as RESULTS_ACHIEVED_SPACE,
+chr(13) || chr(10) as RESULTS_ACHIEVED_SPACE,
+--End 20240923 Remove chr(255) from the database value
+O.WEIGHTING, O.RATING
+		, lengthb(KEY_OBJECTIVE) - length(KEY_OBJECTIVE) as KEY_OBJECTIVE_LEN
+		, lengthb(RESULTS_ACHIEVED) - length(RESULTS_ACHIEVED) as RESULTS_ACHIEVED_LEN
+FROM HA_HR_EA_CONTRACT C, HA_HR_EA_OBJECTIVES O
+WHERE C.REPORT_ID = $P{ReportID}
+AND C.REPORT_ID = O.REPORT_ID(+)
+AND O.TYPE(+) = 'PARTB'
+AND (O.KEY_OBJECTIVE IS NOT NULL OR O.RESULTS_ACHIEVED IS NOT NULL)
+ORDER BY O.SEQ_NO]]>
+	</queryString>
+	<field name="KEY_OBJECTIVE" class="java.lang.String"/>
+	<field name="KEY_OBJECTIVE_SPACE" class="java.lang.String"/>
+	<field name="RESULTS_ACHIEVED" class="java.lang.String"/>
+	<field name="RESULTS_ACHIEVED_SPACE" class="java.lang.String"/>
+	<field name="WEIGHTING" class="java.lang.Double"/>
+	<field name="RATING" class="java.lang.String"/>
+	<field name="KEY_OBJECTIVE_LEN" class="java.lang.Integer"/>
+	<field name="RESULTS_ACHIEVED_LEN" class="java.lang.Integer"/>
+	<group name="Objectives" isStartNewColumn="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[null]]></groupExpression>
+		<groupHeader>
+			<band height="74" splitType="Stretch">
+				<staticText>
+					<reportElement key="tableHeading1-1" positionType="Float" mode="Transparent" x="0" y="0" width="134" height="74" forecolor="#000000" backcolor="#FFFFFF" uuid="44084a0b-ab8d-428d-aeb5-4cc51bc9d1a8"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="styled">
+						<font fontName="新細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[<style isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Key Objectives</style><style size="2">
+
+</style>主要工作目標]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="tableHeading2-1" positionType="Float" mode="Transparent" x="134" y="0" width="210" height="74" forecolor="#000000" backcolor="#FFFFFF" uuid="58c96c87-5aee-492f-80e0-61d947a9a63d"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="styled">
+						<font fontName="新細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[<style isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Results Achieved</style><style size="2">
+
+</style>取得的成效]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="tableHeading3-1" positionType="Float" mode="Opaque" x="344" y="0" width="57" height="74" forecolor="#000000" backcolor="#FFFFFF" uuid="7726ab1e-641e-4e38-bb59-e25fe4a5372c"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="styled">
+						<font fontName="新細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[<style isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Weighting </style>
+
+比重%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="tableHeading3-2" positionType="Float" mode="Opaque" x="401" y="0" width="126" height="56" forecolor="#000000" backcolor="#FFFFFF" uuid="b0ef57b6-e7f1-4b6f-a890-0f43b23e60e7"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="styled">
+						<font fontName="新細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[<style isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Rating </style> 評級 <style isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">(Please input
+"Y" in appropriate boxes </style>
+請於適當方格內填上 <style isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">"Y")</style>]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="txtRatingMark1-1" style="ReportDesc" mode="Transparent" x="428" y="58" width="22" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="13849307-c691-408a-8b7a-8f960af9fafd"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font isBold="true" pdfFontName="Times-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[B]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="txtRatingMark1-2" style="ReportDesc" mode="Transparent" x="478" y="58" width="22" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="d653ce62-1047-4229-a15c-583da270547e"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font isBold="true" pdfFontName="Times-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[D]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="txtRatingMark1-3" style="ReportDesc" mode="Opaque" x="453" y="58" width="22" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="aba630fe-34d7-4120-8b00-6b10f0b8c2e7"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font isBold="true" pdfFontName="Times-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[C]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="txtRatingMark1-4" style="ReportDesc" mode="Transparent" x="503" y="58" width="22" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="64bd9f2c-8496-4685-823b-c481ea228adc"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font isBold="true" pdfFontName="Times-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[E]]></text>
+				</staticText>
+				<line>
+					<reportElement key="line-11" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="427" y="56" width="1" height="17" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="cf807f98-6b5a-4e72-a810-3a37eb7415ec"/>
+					<graphicElement fill="Solid">
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement key="line-12" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="452" y="56" width="1" height="17" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="e6ef6418-efd7-4e3c-8e96-2fce3179fe63"/>
+					<graphicElement fill="Solid">
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement key="line-13" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="477" y="56" width="1" height="17" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="9327a69c-7efc-4b7d-a31d-64d3a856c51c"/>
+					<graphicElement fill="Solid">
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement key="line-14" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="502" y="56" width="1" height="17" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="4c1c9bef-5419-4bf7-ae37-b39047c33439"/>
+					<graphicElement fill="Solid">
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement key="line-15" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="526" y="56" width="1" height="17" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="37c1d9f1-9c2a-4ade-89e5-98982d3ebe69"/>
+					<graphicElement fill="Solid">
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement key="line-16" positionType="Float" mode="Opaque" x="400" y="73" width="127" height="1" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="5f28251f-303b-43f7-8f5c-2aa2d3bfe1ed"/>
+					<graphicElement fill="Solid">
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement key="staticText-2" style="ReportDesc" positionType="Float" mode="Transparent" x="403" y="58" width="22" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="964aaa24-351e-478d-8883-c341369c8cf4"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font isBold="true" pdfFontName="Times-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[A]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="290" splitType="Stretch">
+			<staticText>
+				<reportElement key="txtPartB1Title" positionType="Float" mode="Transparent" x="56" y="0" width="411" height="40" forecolor="#000000" backcolor="#FFFFFF" uuid="bdec4210-1fc8-4ccf-8988-5995f98d3744"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">PART B : YEAR-END REVIEW</style>
+乙部：年終檢討]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtPartB1Title" positionType="Float" mode="Transparent" x="2" y="41" width="521" height="73" forecolor="#000000" backcolor="#FFFFFF" uuid="5a9e1f49-8550-48e2-82e7-a9f0eda04f8d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Section1            Appraisal of Performance </style><style isItalic="true" pdfFontName="Times-Italic" pdfEncoding="CP1252">(to be completed by Appraising Officer)</style>
+<style size="12">第一欄              工作表現評核 (由評核人員填寫)</style>
+
+<style size="12" pdfFontName="Times-Roman" pdfEncoding="CP1252">Indicate how effectively the planned results were actually achieved during the appraisal period.</style>
+請列明評核期內主要工作目標所取得的成效。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtRatingTitle" positionType="Float" mode="Transparent" x="2" y="121" width="118" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="9a0c3b33-eeed-4ca0-a807-1947f6ce5f3c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Rating </style>評級 : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-1" mode="Opaque" x="142" y="137" width="385" height="150" forecolor="#000000" backcolor="#FFFFFF" uuid="e48e6f7f-8f92-47a6-a127-91577e2e74d1"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style size="10" pdfFontName="Times-Roman" pdfEncoding="CP1252">: Consistently excelled in all responsibility areas</style>
+  表現優異，工作成效遠超應有水平<style size="2">
+
+</style><style size="10" pdfFontName="Times-Roman" pdfEncoding="CP1252">: Met and occasionally exceeded requirements in all responsibility areas  </style>
+  表現良好，工作成效達到並偶爾超越應有水平<style size="2">
+
+</style><style size="10" pdfFontName="Times-Roman" pdfEncoding="CP1252">: Generally met overall requirements of the responsibility areas</style>
+  工作成效達到應有水平<style size="2">
+
+</style><style size="10" pdfFontName="Times-Roman" pdfEncoding="CP1252">: Partially met the requirements of the responsibility areas and had definite
+  performance deficiencies</style>
+  表現確實有缺點，工作成效只有部分達到應有水平<style size="2">
+
+</style><style size="10" pdfFontName="Times-Roman" pdfEncoding="CP1252">: Key objectives and results not achieved</style>
+  主要工作目標和成效未能達到]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtRating1" positionType="Float" mode="Opaque" x="2" y="137" width="139" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="91609fc2-e271-43d2-83ac-f8e8ced3ab9c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">A - Outstanding  </style>優 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtRating2" positionType="Float" mode="Transparent" x="2" y="164" width="139" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="2bcabd1e-ae28-4d8b-88e2-e6f0db830815"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">B - Very Effective  </style>良]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtRating3" positionType="Float" mode="Transparent" x="2" y="188" width="139" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="c85bde25-ece3-46d6-855e-fa3ee7d1134c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">C - Effective  </style>常 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtRating5" positionType="Float" mode="Transparent" x="2" y="254" width="139" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="233b218c-b9a0-44d9-9789-4b1bac6fa908"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">E - Poor  </style>劣 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtRating4" positionType="Float" mode="Transparent" x="2" y="216" width="139" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="b40b2cde-92ae-4168-828a-1a6c9cbf8648"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">D - Below Expectation  </style>差 ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Prevent">
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="tKeyObjectives-1" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="1" y="2" width="131" height="38" forecolor="#000000" backcolor="#FFFFFF" uuid="55c6b739-937a-44d7-ba69-b4160138fa00">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{KEY_OBJECTIVE}!= null)]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="4" bottomPadding="4" rightPadding="4">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ($F{KEY_OBJECTIVE_LEN}.intValue() > 0 ) ? $F{KEY_OBJECTIVE}.replaceAll("'","’").replaceAll("`","‘") : $F{KEY_OBJECTIVE} ) + $F{KEY_OBJECTIVE_SPACE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement key="tKeyObjectives-2" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="345" y="2" width="54" height="37" forecolor="#000000" backcolor="#FFFFFF" uuid="d84486b9-bf89-48bd-80e0-04c36c30bb36"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WEIGHTING}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-1" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="1" height="39" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="b4b70926-b62a-498a-875a-15ad04ad24b1"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-2" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="134" y="0" width="1" height="39" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="738d3e94-4ec3-426b-8883-a88f912f1418"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-3" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="344" y="0" width="1" height="39" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="075e420f-25f8-4c04-99ea-c6c34c6f1156"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-4" positionType="Float" stretchType="RelativeToBandHeight" mode="Opaque" x="400" y="0" width="1" height="39" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="e81a540d-8cb5-463a-b441-a4e0a51f8372"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-5" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="427" y="0" width="1" height="39" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="766b9d3f-bcab-4f36-a156-c11e78fa6f75"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-5" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="452" y="0" width="1" height="39" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="c7720c9f-2641-4b93-8588-15cbe4e79b64"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-6" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="502" y="0" width="1" height="39" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="0b5a975d-aad1-4cf9-a5b9-9d204ac14a41"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-7" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="477" y="0" width="1" height="39" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="27e1de84-a8b4-492c-ba2a-279d78b724ed"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-8" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="526" y="0" width="1" height="39" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="5f6daaa8-6006-4332-9acd-8593a411e7d2"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement key="tRatingA" style="ReportTitle" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="403" y="1" width="22" height="36" forecolor="#000000" backcolor="#FFFFFF" uuid="13b07247-a3d1-4344-ba87-03f0aec31ce3">
+					<printWhenExpression><![CDATA[new java.lang.Boolean ($F{RATING}.charAt(0)== 'A')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Y]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="tRatingB" style="ReportTitle" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="428" y="1" width="22" height="36" forecolor="#000000" backcolor="#FFFFFF" uuid="e59f020f-b6e7-45f6-b69b-91c7e18d8792">
+					<printWhenExpression><![CDATA[new java.lang.Boolean ($F{RATING}.charAt(0)== 'B')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Y]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="tRatingC" style="ReportTitle" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="453" y="1" width="22" height="36" forecolor="#000000" backcolor="#FFFFFF" uuid="5e0e43c5-f75c-43dd-9037-b4b6819e46fc">
+					<printWhenExpression><![CDATA[new java.lang.Boolean ($F{RATING}.charAt(0)== 'C')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Y]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="tRatingD" style="ReportTitle" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="478" y="1" width="22" height="36" forecolor="#000000" backcolor="#FFFFFF" uuid="efe01e47-7495-462f-8b7b-7f84dc416372">
+					<printWhenExpression><![CDATA[new java.lang.Boolean ($F{RATING}.charAt(0)== 'D')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Y]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="tRatingE" style="ReportTitle" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="503" y="1" width="22" height="36" forecolor="#000000" backcolor="#FFFFFF" uuid="41f2ab4d-49d9-4fdc-a722-85e748df1b16">
+					<printWhenExpression><![CDATA[new java.lang.Boolean ($F{RATING}.charAt(0)== 'E')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Y]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-9" positionType="Float" mode="Transparent" x="0" y="39" width="526" height="1" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="4eb71358-eba4-4156-a568-c1756b1625c0"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="tResultsAchieved-3" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="136" y="2" width="206" height="37" forecolor="#000000" backcolor="#FFFFFF" uuid="2aa84d9d-9588-4639-a141-4c8c17557140">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{RESULTS_ACHIEVED}!= null)]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="4" bottomPadding="4" rightPadding="4">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ($F{RESULTS_ACHIEVED_LEN}.intValue() > 0 ) ? $F{RESULTS_ACHIEVED}.replaceAll("'","’").replaceAll("`","‘") : $F{RESULTS_ACHIEVED} ) + $F{RESULTS_ACHIEVED_SPACE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

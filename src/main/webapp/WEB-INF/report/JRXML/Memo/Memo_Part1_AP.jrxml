@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2022-06-01T11:08:00 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Memo_Part1_AP" pageWidth="496" pageHeight="479" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="496" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1f22bdaa-9fbc-43da-9bc4-a9459ec046bd">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="ReportID" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("151")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("C:\\iReport\\Reports\\Memo\\")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT MD.MEMO_FROM, MD.REF1, MD.REF2, MD.TEL_NO, MD.FAX_NO,
+MD.MEMO_FROM_DATE, MD.MEMO_TO, MD.VIA, MD.YOUR_REF1, MD.YOUR_REF2
+,MD.MEMO_TO_DATE, MD.TOTAL_PAGES, REPLACE(MD.DUTY_DESC, utl_raw.cast_to_varchar2('F48FBFBD')) as DUTY_DESC, MD.OVERALL_PERF,
+--20240923 Remove chr(255) from the database value
+--chr(255) as DUTY_DESC_SPACE,
+' ' as DUTY_DESC_SPACE,
+--End 20240923 Remove chr(255) from the database value
+REPLACE(MD.OVERALL_COMMENT, utl_raw.cast_to_varchar2('F48FBFBD')) as OVERALL_COMMENT,MD.PERF_BONUS_AO, MD.SALARY_ADJ_AO, MD.AO_NAME,
+MD.AO_RANK,R.NAME, R.CHINESE_NAME, R.SUBSTANTIVE_RANK, R.PRESENT_POST, R.DIVISION,
+TO_CHAR(R.COMMENCE_DATE,'DD-MON-YYYY') "COMMENCE_DATE",
+TO_CHAR(R.END_DATE,'DD-MON-YYYY') "END_DATE"
+,lengthb(MD.DUTY_DESC ) - length(MD.DUTY_DESC ) as DUTY_DESC_LEN
+,lengthb(MD.MEMO_FROM ) - length(MD.MEMO_FROM ) as MEMO_FROM_LEN
+FROM HA_HR_EA_MEMO_DETAILS MD, HA_HR_EA_REPORT R
+WHERE R.REPORT_ID = $P{ReportID}
+AND MD.REPORT_ID = R.REPORT_ID]]>
+	</queryString>
+	<field name="MEMO_FROM" class="java.lang.String"/>
+	<field name="REF1" class="java.lang.String"/>
+	<field name="REF2" class="java.lang.String"/>
+	<field name="TEL_NO" class="java.lang.String"/>
+	<field name="FAX_NO" class="java.lang.String"/>
+	<field name="MEMO_FROM_DATE" class="java.lang.String"/>
+	<field name="MEMO_TO" class="java.lang.String"/>
+	<field name="VIA" class="java.lang.String"/>
+	<field name="YOUR_REF1" class="java.lang.String"/>
+	<field name="YOUR_REF2" class="java.lang.String"/>
+	<field name="MEMO_TO_DATE" class="java.lang.String"/>
+	<field name="TOTAL_PAGES" class="java.lang.String"/>
+	<field name="DUTY_DESC" class="java.lang.String"/>
+	<field name="OVERALL_PERF" class="java.lang.String"/>
+	<field name="DUTY_DESC_SPACE" class="java.lang.String"/>
+	<field name="OVERALL_COMMENT" class="java.lang.String"/>
+	<field name="PERF_BONUS_AO" class="java.lang.String"/>
+	<field name="SALARY_ADJ_AO" class="java.lang.String"/>
+	<field name="AO_NAME" class="java.lang.String"/>
+	<field name="AO_RANK" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="CHINESE_NAME" class="java.lang.String"/>
+	<field name="SUBSTANTIVE_RANK" class="java.lang.String"/>
+	<field name="PRESENT_POST" class="java.lang.String"/>
+	<field name="DIVISION" class="java.lang.String"/>
+	<field name="COMMENCE_DATE" class="java.lang.String"/>
+	<field name="END_DATE" class="java.lang.String"/>
+	<field name="DUTY_DESC_LEN" class="java.lang.Integer"/>
+	<field name="MEMO_FROM_LEN" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="478" splitType="Stretch">
+			<staticText>
+				<reportElement key="txtTitle-1" positionType="Float" mode="Transparent" x="214" y="0" width="63" height="21" forecolor="#000000" backcolor="#FFFFFF" uuid="630d798e-88d2-49ea-ae3a-252418f75b2c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false" pdfFontName="Times-Roman" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[MEMO]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-1" positionType="Float" mode="Opaque" x="0" y="134" width="496" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="e0a9071e-a24e-42b0-bc54-d7e25ba97dad"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-2" positionType="Float" mode="Opaque" x="0" y="132" width="496" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="24690f22-c5f7-4ff5-9493-8b8c5f3b12d6"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line-3" positionType="Float" mode="Opaque" x="245" y="24" width="1" height="108" forecolor="#000000" backcolor="#FFFFFF" uuid="10ab0033-2f9f-4337-a615-4c711cd57e96"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement key="txtTitleDesc-1" positionType="Float" mode="Opaque" x="5" y="24" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="700fcf25-04ef-46ea-9194-92a338ae984e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtTitleDesc-2" positionType="Float" mode="Opaque" x="5" y="40" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="743256f3-e163-4265-826c-0cbbd06b1c8f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Ref.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtTitleDesc-3" positionType="Float" mode="Opaque" x="5" y="78" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="734d3ab6-ed68-4bb4-a96b-0b0097515743"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tel. No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtTitleDesc-4" positionType="Float" mode="Opaque" x="5" y="94" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="9ef557d1-c6ec-403a-8b1a-4a043fca8211"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fax. No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtTitleDesc-5" positionType="Float" mode="Opaque" x="5" y="110" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="1a099f15-5443-4c77-be0a-869783626a75"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-1" positionType="Float" mode="Opaque" x="80" y="22" width="134" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="afe42922-1b96-49fd-a4b7-f004d9306ece"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ($F{MEMO_FROM_LEN}.intValue() > 0 ) ? $F{MEMO_FROM}.replaceAll("'","’").replaceAll("`","‘") : $F{MEMO_FROM} )]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-2" positionType="Float" mode="Opaque" x="80" y="38" width="57" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="1290c9fe-c036-48ea-8d02-c99fff8d66f0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REF1}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-3" positionType="Float" mode="Opaque" x="157" y="38" width="57" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="8a5e6031-5676-4bd6-b32f-df80f517878f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REF2}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-1" positionType="Float" mode="Opaque" x="137" y="38" width="20" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="a474d0f0-a94a-49dc-bead-17be6bb175cd"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Italic" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[in]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-4" positionType="Float" mode="Opaque" x="80" y="78" width="134" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="627f6d40-fcbc-4d96-97f3-779fab0705a3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TEL_NO}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-5" positionType="Float" mode="Opaque" x="80" y="94" width="134" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="c15306d6-201c-4b1a-9331-f991d27799fe"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FAX_NO}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-6" positionType="Float" mode="Opaque" x="80" y="110" width="134" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="706a14b1-85cd-439f-9127-1717936d5b0e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MEMO_FROM_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtTitleDesc-6" positionType="Float" mode="Opaque" x="280" y="24" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="05100363-0f2e-4847-8f4c-9beabe9be3ae"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtTitleDesc-7" positionType="Float" mode="Opaque" x="280" y="40" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="c22bdf47-20d1-4a48-92fa-501432109266"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Via:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtTitleDesc-8" positionType="Float" mode="Opaque" x="280" y="78" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="43c1025d-3d00-429e-97ef-606abfb7d48d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Your Ref.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtTitleDesc-9" positionType="Float" mode="Opaque" x="280" y="94" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="a755ad36-36c2-488a-9883-c17d2cdf1b3e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dated]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtTitleDesc-10" positionType="Float" mode="Opaque" x="280" y="110" width="71" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="8c756451-2a5e-49c4-9f90-3da2825cfea6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-BoldItalic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total Pages]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoTo-1" positionType="Float" mode="Opaque" x="356" y="22" width="134" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="b479e673-6c00-4a5e-b1b2-5c2421867b69"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MEMO_TO}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-7" positionType="Float" mode="Opaque" x="356" y="78" width="57" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="81c6458c-4636-4e77-a7b7-c77fee2b4387"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YOUR_REF1}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-8" positionType="Float" mode="Opaque" x="433" y="78" width="57" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="9dd87d23-c47c-4c59-90e3-e077158f585c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YOUR_REF2}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-2" positionType="Float" mode="Opaque" x="413" y="78" width="20" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="ad796223-cb9c-4bf9-954b-ede7b1cf7db0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Italic" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[in]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-9" positionType="Float" mode="Opaque" x="356" y="38" width="134" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="7053645a-b1c6-4354-9dad-828f0626ef2f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VIA}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-10" positionType="Float" mode="Opaque" x="356" y="94" width="134" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="f4c4e32f-9828-4f98-a005-e59d1ff974db"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MEMO_TO_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tMemoFrom-11" positionType="Float" mode="Opaque" x="356" y="110" width="134" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="25ff6414-dda1-4575-98c9-c824bb84d177"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_PAGES}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtStaffReportEng-1" positionType="Float" mode="Opaque" x="186" y="146" width="126" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="9ff05dff-fa25-441f-9b98-0a604e974ded"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Staff Appraisal Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtStaffReportChi-1" positionType="Float" mode="Opaque" x="202" y="161" width="83" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="016a7cdc-a59f-40a9-998f-3112c81bc17e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[員工評核報告]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtPart1-1" positionType="Float" mode="Opaque" x="0" y="186" width="457" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="6c92aad0-1a85-428c-9e50-e4ec1b74cee6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Bold" pdfEncoding="CP1252">Part I: to be completed by Grade Management</style> 第一部份：由職系管理組填寫]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtNameOfOfficer-1" positionType="Float" mode="Opaque" x="0" y="214" width="208" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="f462c5f6-cc1e-4d82-ae9d-74ed96be255c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Name of Officer </style>員工姓名 (<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">English</style> 英文)]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tName-1" positionType="Float" mode="Opaque" x="209" y="216" width="273" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="043c3928-a4cd-41e5-8fe3-4450e3b87e2e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAME}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtNameOfOfficer-2" positionType="Float" mode="Opaque" x="0" y="231" width="82" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="64d5a002-52d2-484e-8b5c-5d8cb7c67ef0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Chinese </style>中文)]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tChineseName-1" positionType="Float" mode="Opaque" x="83" y="233" width="125" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="a3c3fb51-b856-4c78-8f8c-38aa9f5ebd92"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHINESE_NAME}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtNameOfOfficer-3" positionType="Float" mode="Opaque" x="209" y="231" width="141" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="9ebbcd83-319c-49b6-841d-50894356cbb5"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Substantive Rank </style>實任職級]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tChineseName-2" positionType="Float" mode="Opaque" x="351" y="233" width="132" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="cad418a2-4bdb-46d9-985c-47a530c04b50"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUBSTANTIVE_RANK}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="tPost-1" positionType="Float" mode="Opaque" x="0" y="248" width="57" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="dbca1169-2d53-4f2e-8430-690c43574a8f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Post </style>職位]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tChineseName-3" positionType="Float" mode="Opaque" x="58" y="250" width="150" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="ece7658d-d406-4dcc-8f3e-775a78811997"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRESENT_POST}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtNameOfOfficer-4" positionType="Float" mode="Opaque" x="209" y="248" width="124" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="d3597504-7dc5-4d17-973c-0af39ba4c2a6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Division/Section  </style>科/組]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tChineseName-4" positionType="Float" mode="Opaque" x="333" y="250" width="150" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="f297148c-bd10-4216-b68c-512cc3d41780"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DIVISION}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtNameOfOfficer-5" positionType="Float" mode="Opaque" x="0" y="266" width="132" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="ad674af2-6881-4680-8298-4e779c684632"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Appraisal Period </style>評核期]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tContractDate-1" positionType="Float" mode="Opaque" x="134" y="268" width="69" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="ea5e8668-c1b9-4d7c-8c49-a58afda43a81"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COMMENCE_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tContractDate-2" positionType="Float" mode="Opaque" x="214" y="268" width="269" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="69c07b47-8724-4f32-98c4-616b8353c195"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{END_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtTo-1" positionType="Float" mode="Opaque" x="203" y="268" width="11" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="69adfdf0-685d-43c0-9914-808d685e5b9d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ ~ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtPart2-1" positionType="Float" mode="Opaque" x="1" y="299" width="457" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="2a66d097-e392-4a88-9755-6db6dd090f30"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Bold" pdfEncoding="CP1252">Part II: to be completed by Appraisee</style> 第二部份：由受評核人員填寫]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtDutyDesc-1" positionType="Float" mode="Opaque" x="1" y="326" width="282" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="c0b81a80-498a-47bf-991e-deff9e778d18"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Brief Description of Duties </style> 職務簡述]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="tDutyDesc-1" positionType="Float" mode="Transparent" x="19" y="350" width="453" height="121" forecolor="#000000" backcolor="#FFFFFF" uuid="072ab70f-95a2-4660-8b44-448ff5bdf2a3">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{DUTY_DESC}!= null)]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="5" leftPadding="5" rightPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ($F{DUTY_DESC_LEN}.intValue() > 0 ) ? $F{DUTY_DESC}.replaceAll("'","’").replaceAll("`","‘") : $F{DUTY_DESC} ) + $F{DUTY_DESC_SPACE}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="0">
+				<reportElement key="rectangle-1" positionType="Float" mode="Transparent" x="19" y="350" width="453" height="121" forecolor="#000000" backcolor="#FFFFFF" uuid="ad210f4c-dc22-404c-9fa4-dd9dc538afa5">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{DUTY_DESC}== null)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

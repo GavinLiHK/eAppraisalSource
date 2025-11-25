@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="PB_SA_Box"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="521"
+		 pageHeight="249"
+		 columnWidth="521"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<parameter name="PerformanceBonus" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Merit Payment
+1 = Recommended
+2 = Not Recommended]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("0")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SalaryAdjustment" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Salary Adjustment
+1 = Recommended
+2 = Not Recommended]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("0")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report Directory
+]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("C:/iReport/reports/AssessAppraisalReport/")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ShowBoxLayout" isForPrompting="false" class="java.lang.Boolean">
+		<parameterDescription><![CDATA[True = Show Box Layout
+False = Not Show Box Layout]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new Boolean(true)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportID" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("100")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ParSpace" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Space]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ChiParSpace" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Chinese Space]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new java.lang.String("")]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[Select Report_ID from Ha_Hr_Ea_Report 
+where Report_ID = $P{ReportID}]]></queryString>
+	<field name="REPORT_ID" class="java.lang.Double"/>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="249"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="109"
+						width="512"
+						height="140"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="Layout"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false">
+							<printWhenExpression><![CDATA[$P{ShowBoxLayout}]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000" bottomPadding="5"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="新細明體" pdfFontName="MSung-Light" size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="3"
+						y="145"
+						width="260"
+						height="104"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="txtRecommanded1-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000" bottomPadding="5"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="新細明體" pdfFontName="MSung-Light" size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Recommended </style>建議給予]]></text>
+				</staticText>
+				<image  scaleImage="RetainShape" vAlign="Top" hAlign="Left" isUsingCache="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="204"
+						y="146"
+						width="16"
+						height="101"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="imgUnClickR1-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch" pen="None" fill="Solid" />
+					<imageExpression class="java.lang.String"><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>				</image>
+				<image  scaleImage="RetainShape" vAlign="Top" hAlign="Left" isUsingCache="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="204"
+						y="146"
+						width="16"
+						height="101"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="imgClickR1-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false">
+							<printWhenExpression><![CDATA[new java.lang.Boolean(new String($P{PerformanceBonus}).charAt(0)=='1')]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch" pen="None" fill="Solid" />
+					<imageExpression class="java.lang.String"><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>				</image>
+				<image  scaleImage="RetainShape" vAlign="Top" hAlign="Left" isUsingCache="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="432"
+						y="146"
+						width="16"
+						height="101"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="imgUnClickNR1-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch" pen="None" fill="Solid" />
+					<imageExpression class="java.lang.String"><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>				</image>
+				<image  scaleImage="RetainShape" vAlign="Top" hAlign="Left" isUsingCache="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="432"
+						y="146"
+						width="16"
+						height="101"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="imgClickNR1-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false">
+							<printWhenExpression><![CDATA[new java.lang.Boolean(new String($P{PerformanceBonus}).charAt(0)=='2')]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch" pen="None" fill="Solid" />
+					<imageExpression class="java.lang.String"><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>				</image>
+				<image  scaleImage="RetainShape" vAlign="Top" hAlign="Left" isUsingCache="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="204"
+						y="213"
+						width="16"
+						height="32"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="imgUnClickR2-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch" pen="None" fill="Solid" />
+					<imageExpression class="java.lang.String"><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>				</image>
+				<image  scaleImage="RetainShape" vAlign="Top" hAlign="Left" isUsingCache="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="204"
+						y="213"
+						width="16"
+						height="32"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="imgClickR2-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false">
+							<printWhenExpression><![CDATA[new java.lang.Boolean(new String($P{SalaryAdjustment}).charAt(0)=='1')]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch" pen="None" fill="Solid" />
+					<imageExpression class="java.lang.String"><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>				</image>
+				<image  scaleImage="RetainShape" vAlign="Top" hAlign="Left" isUsingCache="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="432"
+						y="213"
+						width="16"
+						height="32"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="imgUnClickNR2-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch" pen="None" fill="Solid" />
+					<imageExpression class="java.lang.String"><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>				</image>
+				<image  scaleImage="RetainShape" vAlign="Top" hAlign="Left" isUsingCache="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="432"
+						y="213"
+						width="16"
+						height="32"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="imgClickNR2-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false">
+							<printWhenExpression><![CDATA[new java.lang.Boolean(new String($P{SalaryAdjustment}).charAt(0)=='2')]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch" pen="None" fill="Solid" />
+					<imageExpression class="java.lang.String"><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>				</image>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="3"
+						y="212"
+						width="260"
+						height="35"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="txtRecommanded1-2"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000" bottomPadding="5"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="新細明體" pdfFontName="MSung-Light" size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Recommended </style>建議給予]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="263"
+						y="145"
+						width="209"
+						height="104"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="txtRecommanded1-3"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000" bottomPadding="5"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="新細明體" pdfFontName="MSung-Light" size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Not Recommended </style>不建議給予]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="263"
+						y="212"
+						width="209"
+						height="35"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="txtRecommanded1-4"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000" bottomPadding="5"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="新細明體" pdfFontName="MSung-Light" size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Not Recommended </style>不建議給予]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="109"
+						width="521"
+						height="140"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="PB_SA_Selection_Box_No_Layout"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" topPadding="5" leftBorder="None" leftBorderColor="#000000" leftPadding="5" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000" bottomPadding="5"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="新細明體" pdfFontName="MSung-Light" size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[<style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Merit Payment </style>工作表現獎金：
+
+
+<style size="10">
+
+</style><style size="12" isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Annual Salary Adjustment </style>每年薪金調整：]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="0"
+						width="521"
+						height="249"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="新細明體" pdfFontName="MSung-Light" size="10" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["<style size=\"12\" pdfFontName=\"Times-Roman\" pdfEncoding=\"CP1252\">" + $P{ParSpace}+ "Please indicate your recommendation on whether the appraisee should be granted a merit payment\n" + 
+$P{ParSpace}+ "and the annual salary adjustment, subject to his meeting the eligibility criteria, by selecting the\n" +
+$P{ParSpace}+ "appropriate option. Please refer to the administrative guidelines for the eligibility criteria and principles\n" + 
+$P{ParSpace}+ "to be considered before making recommendation.</style><style size=\"4\">\n\n" + 
+"</style>" + $P{ChiParSpace}+ "如受評人符合有關給予工作表現獎金及每年薪金調整的資格，請選取適當的建議，表明是否建議給予受評人工\n" + 
+$P{ChiParSpace}+ "作表現獎金及每年薪金調整。作出建議前請參考行政指引所列的資格及原則。"]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

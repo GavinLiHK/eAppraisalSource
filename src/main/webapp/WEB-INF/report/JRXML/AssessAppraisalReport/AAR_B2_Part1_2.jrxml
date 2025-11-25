@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="AAR_B2_Part1_2"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="523"
+		 pageHeight="807"
+		 columnWidth="523"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<reportFont name="ReportDesc" isDefault="false" fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<reportFont name="ReportTitle" isDefault="false" fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<parameter name="ReportID" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("344")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("C:\\eclipse\\workspace\\ea\\report\\JRXML\\AssessAppraisalReport\\")]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT REPLACE(C.XXOVERALL_COMMENT2 OVERALL_COMMENT2, utl_raw.cast_to_varchar2('F48FBFBD')) as XXOVERALL_COMMENT2,
+--20240923 Remove chr(255) from the database value
+--chr(13) || chr(10) || chr(255) as OVERALL_COMMENT2_SPACE
+chr(13) || chr(10) as OVERALL_COMMENT2_SPACE
+--End 20240923 Remove chr(255) from the database value
+, LENGTHB(TO_CHAR(SUBSTR(C.XXOVERALL_COMMENT2,1,1000))) - LENGTHB(TO_CHAR(SUBSTR(C.XXOVERALL_COMMENT2,1,1000))) as OVERALL_COMMENT2_LEN
+FROM HA_HR_EA_CONTRACT C
+WHERE C.REPORT_ID = $P{ReportID}]]></queryString>
+	<field name="OVERALL_COMMENT2" class="java.lang.String"/>
+	<field name="OVERALL_COMMENT2_SPACE" class="java.lang.String"/>
+<field name="OVERALL_COMMENT2_LEN" class="java.lang.Integer"/>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="480"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="0"
+						width="522"
+						height="35"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="txtOverallPerformance"
+						stretchType="NoStretch"
+						positionType="FixRelativeToTop"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="新細明體" pdfFontName="MSung-Light" size="10" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[<style size="12" pdfFontName="Times-Roman" pdfEncoding="CP1252">Comments on Overall Performance (Continued)</style>
+整體工作表現評語(續)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="-1"
+						y="36"
+						width="523"
+						height="425"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="txtOverallComment2"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false">
+							<printWhenExpression><![CDATA[new java.lang.Boolean($F{OVERALL_COMMENT2}== null)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="1Point" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="細明體" pdfFontName="MSung-Light" size="9" isBold="true" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="37"
+						width="522"
+						height="424"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="tOverallComment2"
+						stretchType="NoStretch"
+						positionType="FixRelativeToTop"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false">
+							<printWhenExpression><![CDATA[new java.lang.Boolean($F{OVERALL_COMMENT2}!= null)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="1Point" topBorderColor="#000000" topPadding="5" leftBorder="1Point" leftBorderColor="#000000" leftPadding="5" rightBorder="1Point" rightBorderColor="#000000" rightPadding="5" bottomBorder="1Point" bottomBorderColor="#000000" bottomPadding="5"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="細明體" pdfFontName="MSung-Light" size="9" isBold="true" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[ ( ($F{OVERALL_COMMENT2_LEN}.intValue() > 0 ) ? $F{OVERALL_COMMENT2}.replaceAll("'","’").replaceAll("`","‘") : $F{OVERALL_COMMENT2} ) + $F{OVERALL_COMMENT2_SPACE}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

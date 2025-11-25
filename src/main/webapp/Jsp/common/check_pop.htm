@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<HTML>
+    <BODY>
+        <SCRIPT LANGUAGE="JavaScript">
+            var full = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+            var loginCheck = "/ea/Jsp/common/check.htm";
+            
+            var proxyStr = window.location.pathname;
+            var proxyPos = proxyStr.indexOf("/ea/");
+            if (proxyPos > -1){
+                proxyStr = proxyStr.substr(0,proxyPos);
+            } else {
+                proxyStr = "";
+            }
+
+            var param = new String(window.location);
+            var paramPos = param.indexOf("?",1);
+            if (paramPos > -1){
+                param = param.substr(paramPos,param.length);
+            } else {
+                param = "";
+            }
+            
+            //var strWindowFeatures = "location=no,menubar=no,resizable=yes,scrollbars=yes,status=yes,titlebar=no;toolbar=no";
+            var strWindowFeatures = "";
+            var myWindow = window.open( full + proxyStr + loginCheck + param, "eAppraisal", strWindowFeatures);
+            myWindow.opener.document.write("<p>You can now safely close this browser window.</p>");
+            
+            window.opener=null;
+            window.open('','_self');
+            window.close();
+        </SCRIPT>
+    </BODY>
+</HTML>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="AAR_PI_ActingAppoint"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="487"
+		 pageHeight="150"
+		 columnWidth="487"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<parameter name="ReportID" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new java.lang.String("100")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ActingAppointment" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA[new String("")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ActingAppointmentSpace" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Acting Appointment Space]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new java.lang.String("")]]></defaultValueExpression>
+	</parameter>
+<parameter name="ActingAppointmentLen" isForPrompting="false" class="java.lang.Integer">
+</parameter>
+	<queryString><![CDATA[SELECT REPORT_ID FROM HA_HR_EA_REPORT 
+WHERE REPORT_ID = $P{ReportID}]]></queryString>
+	<field name="REPORT_ID" class="java.lang.Double"/>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="150"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="0"
+						width="476"
+						height="150"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="tActingAppoint"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="Thin" topBorderColor="#000000" topPadding="30" leftBorder="Thin" leftBorderColor="#000000" leftPadding="11" rightBorder="Thin" rightBorderColor="#000000" rightPadding="11" bottomBorder="1Point" bottomBorderColor="#000000" bottomPadding="5"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="細明體" pdfFontName="MSung-Light" size="10" isBold="true" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[ (($P{ActingAppointmentLen}.intValue() > 0 ) ? $P{ActingAppointment}.replaceAll("'","’").replaceAll("`","‘") : $P{ActingAppointment})+ "\n"  + $P{ActingAppointmentSpace}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="0"
+						width="476"
+						height="150"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="tActingAppoint-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" topPadding="4" leftBorder="None" leftBorderColor="#000000" leftPadding="11" rightBorder="None" rightBorderColor="#000000" rightPadding="11" bottomBorder="None" bottomBorderColor="#000000" bottomPadding="8"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="Times New Roman" pdfFontName="Times-Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["<style size=\"12\" isBold=\"true\" pdfFontName=\"Times-Bold\">Acting Appointments (regardless of duration, with dates) during the Appraisal Period</style>\n" + 
+"<style size=\"10\" pdfFontName=\"MSung-Light\" pdfEncoding=\"UniCNS-UCS2-H\">評核期內曾署理的職位(不論任期長短，並須註明日期)</style>\n\n\n\n"]]></textFieldExpression>
+				</textField>
+				<rectangle radius="0" >
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="0"
+						width="476"
+						height="150"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="rectangle-1"
+						stretchType="NoStretch"
+						positionType="FixRelativeToTop"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false">
+							<printWhenExpression><![CDATA[new java.lang.Boolean($P{ActingAppointment}==null)]]></printWhenExpression>
+						</reportElement>
+					<graphicElement stretchType="NoStretch" pen="Thin" fill="Solid" />
+				</rectangle>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

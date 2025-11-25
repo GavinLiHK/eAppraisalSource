@@ -1,0 +1,505 @@
+/******************************************************************************/
+/* General styles                                                             */
+/******************************************************************************/
+
+table, tr, td, select, input, form, li, p, textarea {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
+pre {
+    font-family: monospace;
+    font-size: small;
+}
+
+a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-small;
+/*  modified by ah ho
+    color: #3366CC; */
+    color: #0000FF;
+}
+
+.wpsTabPageText, .wpsTabPageText:active, .wpsTabPageText:visited {
+    font-size: x-small;
+    color: #000000;
+    text-decoration: none;
+}
+
+.wpsTabPageText:hover {
+    font-size: x-small;
+    color: #FF3300;
+    text-decoration: none;
+}
+
+a:active {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-small;
+/*  modified by ah ho
+    color: #3366CC;
+*/
+    color: #FF0000;
+}
+
+a:visited, .wpsLink:visited { 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-small;
+/*    color: #666699; */
+/*  modified by ah ho
+    color: #333333; */
+    color: #6633CC;
+}
+
+a:hover, .wpsLink:hover { 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-small;
+/*    color: #6699CC; */
+    color: #FF3300;
+    text-decoration: underline;
+}
+
+body { 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    background-color: #FFFFFF;
+    margin: 0;
+}
+
+ul { 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+/******************************************************************************/
+/* HA                                                            */
+/******************************************************************************/
+/* PORTLET TITLE */
+
+/* Customized portlet titlebar by ah ho */
+.wpsPagePortletTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    line-height: 120%;
+    background-color: #FFFFFF;
+    color: #333333;
+    padding-left: 5px;
+}
+
+/* used on portlet titlebar */
+.wpsPortletTitle {
+/*  modified by ah ho
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    font-weight: bold;
+    background-color: #A7E6F8;
+    line-height: 150%;
+    padding-left: 10px;
+/*  modified by jimmy woo
+    background-color: #CFD9E5;
+    color: #333333;
+*/
+/*  modified by ah ho
+    background-color: #FF7000;
+    color: #FFFFFF;
+*/
+/*  modified by Jolina Zou
+	background-image:url(../images/PortletTitleBar.gif); Removed
+*/
+
+/*  modified by Jolina Zou
+	height:24px;
+*/
+	height:30px;
+}
+
+/* Main portlet body style */
+.wpsPortletBody {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
+/******************************************************************************/
+/* Other                                                             */
+/******************************************************************************/
+
+.toptextbold {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.toptext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000000;
+}
+
+.toptblbg {
+	background-color: #DEE7F2;
+}
+
+.pageheading {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.subheading {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #333333;
+}
+
+.tblborderspace {
+	background-color: #FFFFFF;
+}
+
+.tblheadingbg {
+	background-color: #A5E4F6;
+}
+
+.tblcontentbg {
+	background-color: #FFFFFF;
+}
+
+.inputfieldheading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	background-color: #DEE7F2;
+}
+
+.inputfield {
+  font-family: Verdana;
+  font-size: 12px;
+  color: #000000;
+}
+
+.errinputfield {
+  font-family: Verdana;
+  font-size: 12px;
+  color: #000000;
+  background-color: #FFCCCC;
+}
+
+.editableinputfield {
+  font-family: Verdana;
+  font-size: 12px;
+  color: #000000;
+  background-color: #FFFFFF;
+}
+
+.tblcontent {
+	font-family: Verdana;
+	font-size: 12px;
+	color: #000000;
+	background-color: #DEE7F2;
+}
+
+.displayfieldheading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	background-color: #DEE7F2;
+	font-weight: bold;
+}
+
+.displaycontent {
+	background-color: #F0F4F9;
+	line-height: 22px;
+}
+
+.displaycontentcompact {
+	background-color: #F0F4F9;
+}
+
+.inputbutton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	text-align: center;
+}
+
+.columnheading {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #336699;
+	background-color: #B5C9E1;
+}
+
+
+.information {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #000000;
+}
+
+.inputfieldheadingredcolor {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: red;
+	background-color: #DEE7F2;
+}
+
+.hide {
+  display:none;
+}
+
+
+/* Text in body of standard portlet and portlet in edit mode - New in v5 */
+.wpsPortletText, .wpsEditText, .wpsPortletSmText, .wpsEditSmText, .wpsPortletTinyText, .portlet-font {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    color: #333333;
+}
+
+/* Text in body of standard portlet and portlet in edit mode - New in v5 */
+.wpsLabelSmallText {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    color: #333333;
+}
+
+.eaListOddRow {
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-color: #FFFFFF;
+	border-width: 1px;
+    padding: 3px;
+}
+
+/* Normal, unselected menu item when the mouse hovers over it - New in v5 */
+.eaListEvenRow {
+	background-color: #DEF8FF;
+	border-style: solid;
+	border-color: #DEF8FF;
+	border-width: 1px;
+    padding: 3px;
+}
+
+
+/* LINK BAR */
+
+/* Bar under toolbar that shows links to customizer and assign permissions portlets */
+.wpsLinkBar {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    background-color: #FFFFFF;
+    color: #FFFFFF;
+    background-repeat: no-repeat;
+}
+
+/* Link color for the text which can be found on the place bar outside of tabs */
+.wpsLinkBarLink, .wpsLinkBarLink:visited, .wpsLinkBarLink:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    color:#817279;
+    text-decoration: underline;
+}
+
+
+
+/* PLACE BAR */
+
+/* Bar under toolbar that shows the places */
+.wpsPlaceBar {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    background-color: #FFFFFF;
+    color: #FFFFFF;
+    background-repeat: no-repeat;
+    border-bottom: 0px none #FFFFFF;
+ }
+
+/* PlaceBar border on bottom*/
+.wpsPlaceBarBorder {
+	FONT-SIZE: xx-small; BORDER-BOTTOM: #16B6E6 1px solid;  FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+
+/* Link color for the text which can be found on the place bar outside of tabs */
+.wpsPlaceBarLink, .wpsPlaceBarLink:visited, .wpsPlaceBarLink:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    color:#817279;
+    text-decoration: none;
+}
+
+/* 3D highlight for Place bar */
+.wpsPlaceBar3dHighlight {
+    background-color: #FF00FF;
+}
+
+/* 3D shadow for Place bar */
+.wpsPlaceBar3dShadow {
+	background-color: #FFFFFF;
+    text-decoration: none; 
+	BORDER-BOTTOM: 1px solid #16B6E6;
+}
+
+/* Selected tab on Place bar */
+.wpsSelectedPlace, .wpsSelectedPlace:visited, .wpsSelectedPlace:hover, .wpsSelectedPlace:active {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    color: #333333;
+    text-decoration: none; 
+    border-top: 0px none #CC9933;    
+    border-left: 0px none #FFEDBC;
+    border-right: 0px none #CC9933;
+    padding: 2px 8px;
+    margin: 0px;
+}
+
+/* Icon next to selected tab on Place bar, such as 'Edit Page' - new in v5 */
+.wpsSelectedPlaceIcon {
+    color: #333333;
+    background-color: #FFFFFF;
+    text-decoration: none; 
+    padding: 0px 2px;
+    margin: 0px;
+        
+}
+
+/* Link in Selected tab on Place bar */
+.wpsSelectedPlaceLink, .wpsSelectedPlaceLink:visited, .wpsSelectedPlaceLink:hover, .wpsSelectedPlaceLink:active {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    font-weight: bold;   
+    color: #333333;
+    text-decoration: none; 
+}
+
+/* 3D highlight on selected tab on Place bar */
+.wpsSelectedPlace3dHighlight {
+    background-color: #B6B7D3;
+}
+
+/* 3D shadow on selected tab on Place bar */
+.wpsSelectedPlace3dShadow {
+    background-color: #5D5E96;
+}
+
+/* Unselected tabs on Place bar */
+.wpsUnSelectedPlace, .wpsUnSelectedPlace:visited, .wpsUnSelectedPlace:hover, .wpsUnSelectedPlace:active {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    background-color: #FFFFFF; 
+    text-decoration: none; 
+	BORDER-BOTTOM: 1px solid #16B6E6;
+}
+
+/* Link in Unselected tabs on Place bar */
+.wpsUnSelectedPlaceLink, .wpsUnSelectedPlaceLink:visited, .wpsUnSelectedPlaceLink:hover, .wpsUnSelectedPlaceLink:active {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+	color: #333333;
+    text-decoration: none;
+}
+
+/* 3D highlight on unselected tabs on Place bar */
+.wpsUnSelectedPlace3dHighlight {
+    background-color: #3D67BB;
+}
+
+/* 3D shadow on unselected tabs on Place bar */
+.wpsUnSelectedPlace3dShadow {
+    background-color: #3D67BB;
+}
+/*Desc font*/
+.wpsDesc{
+	 font-size: 14px;
+}
+/*Label font*/
+.wpsLabel{
+	font-family: Arial, Helvetica, sans-serif;
+	 font-size: 12px;
+}
+.wpsTitles{
+	font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight: bold;
+    background-color: #A7E6F8;
+    line-height: 150%;
+    padding-left: 10px;
+}
+.btnNext{
+	 font-family: Arial, Helvetica, sans-serif;
+     font-size: small;
+     color: #333333;
+}
+
+/* custom radio button by pccw 20211110 */
+/* The container */
+.container {
+  display: inline-block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 6px;
+  height: 15px;
+  width: 15px;
+  background-color: #BBBBBB;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #888888;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 4px;
+	left: 4px;
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: white;
+}
+
+/* end custom radio button by pccw 20211110 */

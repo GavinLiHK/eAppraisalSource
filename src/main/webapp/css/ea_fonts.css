@@ -1,0 +1,105 @@
+
+.DefaultFont{
+	font-family: Verdana;
+	FONT-SIZE:x-small; 
+	COLOR:#333333;
+}
+
+.EmphasisFont{
+	font-family: Verdana;
+	FONT-SIZE:14;
+	font-weight: bold;
+	COLOR:BLACK;
+}
+
+.PageHeadingFont{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	FONT-SIZE: small;
+	FONT-WEIGHT:bold;
+	PADDING-LEFT:5px;
+	COLOR: #333333;
+}
+
+.ectionHeadingFont{
+	 font-family: Verdana, Arial, Helvetica, sans-serif;
+	 color:#0F5D90;
+	 FONT-SIZE: 3px;
+	 font-weight: bold;
+}
+.ColumnCaptionFont{
+	 font-family: Verdana;
+	 FONT-SIZE:14px;
+	 COLOR:BLACK;
+}
+
+.DisplayBoxHeadingFont{
+	font-family:Verdana;
+	SIZE:4px;
+	COLOR:BLACK; 
+	font-weight: bold;
+}
+
+.TableHeadingFont{
+	font-family:Helvetica;
+	SIZE:2;
+	COLOR:black;
+	font-weight: bold;
+}
+
+.TextEditFont{
+	font-family:Helvetica;
+	SIZE:3;
+	Color:BLACK;
+}
+
+.DDLBFont{
+	font-family:Helvetica;
+	SIZE:2;
+	Color: BLACK;
+}
+
+.ButtonFont{
+	font-family:Helvetica;
+	SIZE:2;
+}
+
+.ErrorFont{
+	font-family:Helvetica;
+	SIZE:3;
+	COLOR:RED
+}
+
+.LinkFont{
+	font-family:Verdana;
+	FONT-SIZE:14;
+}
+
+
+.LargeLinkFont{
+	font-family:Helvetica;
+	SIZE:3
+}
+
+.TreeNodeFont{
+	font-family:Helvetica;
+	SIZE:2
+}
+
+.InputFieldHeadingFont{
+	font-family:Arial;
+	FONT-SIZE:x-small;
+	COLOR:#333333;
+}
+
+
+.SubheadingFont{
+	font-family:Arial;
+	FONT-SIZE:x-small;
+	COLOR:#333333;
+}
+
+.TextareaFont{
+	font-family:Verdana;
+	FONT-SIZE:x-small;
+	COLOR:#333333;
+}

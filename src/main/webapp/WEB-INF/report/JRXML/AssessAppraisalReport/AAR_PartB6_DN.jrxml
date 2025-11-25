@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="AAR_PartB6_DN"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="524"
+		 pageHeight="56"
+		 columnWidth="524"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<parameter name="ReportID" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("")]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT REPLACE(DEVELOP_NEED, utl_raw.cast_to_varchar2('F48FBFBD')) as DEVELOP_NEED,
+--20240923 Remove chr(255) from the database value
+--chr(255) as DEVELOP_NEED_SPACE,
+' ' as DEVELOP_NEED_SPACE,
+--End 20240923 Remove chr(255) from the database value
+lengthb(DEVELOP_NEED) - length(DEVELOP_NEED) as DEVELOP_NEED_LEN
+FROM HA_HR_EA_TRAIN_PLAN
+WHERE REPORT_ID = $P{ReportID}
+ORDER BY SEQ_NO]]></queryString>
+	<field name="DEVELOP_NEED" class="java.lang.String"/>
+	<field name="DEVELOP_NEED_SPACE" class="java.lang.String"/>
+<field name="DEVELOP_NEED_LEN" class="java.lang.Integer"/>
+		
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="21"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="1"
+						y="0"
+						width="517"
+						height="21"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="txtDN"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" leftPadding="5" rightBorder="None" rightBorderColor="#000000" rightPadding="5" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" lineSpacing="Single">
+						<font fontName="細明體" pdfFontName="MSung-Light" size="10" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[ ( ($F{DEVELOP_NEED_LEN}.intValue() > 0 ) ? $F{DEVELOP_NEED}.replaceAll("'","’").replaceAll("`","‘") : $F{DEVELOP_NEED} ) + $F{DEVELOP_NEED_SPACE}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="6"  isSplitAllowed="true" >
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

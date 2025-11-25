@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="AAR_PI"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="476"
+		 pageHeight="807"
+		 columnWidth="476"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<reportFont name="ReportTitleFont" isDefault="false" fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<reportFont name="TitleDescFont" isDefault="false" fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<reportFont name="TitleDescFont-it" isDefault="false" fontName="Times New Roman" size="10" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Italic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<reportFont name="ReportTitle-Chi" isDefault="false" fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+	<reportFont name="ReportTitle-Chi-Bold" isDefault="false" fontName="新細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+	<reportFont name="ReportTitle-Chi-it" isDefault="false" fontName="新細明體" size="10" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+	<parameter name="ReportID" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String ("582")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new java.lang.String("C:\\iReport\\reports\\AssessAppraisalReport\\")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sr_aar_pi_main" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_pi_aa" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_pi_tc" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString><![CDATA[SELECT REPLACE(C.ACTING_APPOINT, utl_raw.cast_to_varchar2('F48FBFBD')) as ACTING_APPOINT, 
+--20240923 Remove chr(255) from the database value
+--chr(255) as ACTING_APPOINT_SPACE, 
+' ' as ACTING_APPOINT_SPACE, 
+--End 20240923 Remove chr(255) from the database value
+REPLACE(C.TRAINING_COURSE, utl_raw.cast_to_varchar2('F48FBFBD')) as TRAINING_COURSE,
+--20240923 Remove chr(255) from the database value
+--chr(255) as TRAINING_COURSE_SPACE,
+' ' as TRAINING_COURSE_SPACE,
+--End 20240923 Remove chr(255) from the database value
+lengthb(C.ACTING_APPOINT) - length(C.ACTING_APPOINT) as ACTING_APPOINT_LEN
+, lengthb(C.TRAINING_COURSE) - length(C.TRAINING_COURSE) as TRAINING_COURSE_LEN
+FROM HA_HR_EA_REPORT R, HA_HR_EA_CONTRACT C
+WHERE R.REPORT_ID = $P{ReportID} and R.REPORT_ID=C.REPORT_ID]]></queryString>
+	<field name="ACTING_APPOINT" class="java.lang.String"/>
+	<field name="ACTING_APPOINT_SPACE" class="java.lang.String"/>
+	<field name="TRAINING_COURSE" class="java.lang.String"/>
+	<field name="TRAINING_COURSE_SPACE" class="java.lang.String"/>
+<field name="ACTING_APPOINT_LEN" class="java.lang.Integer"/>
+<field name="TRAINING_COURSE_LEN" class="java.lang.Integer"/>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="35"  isSplitAllowed="true" >
+				<subreport  isUsingCache="true">
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="15"
+						width="476"
+						height="10"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="ActingAppointment-SubReport"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<subreportParameter  name="ReportID">
+						<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ActingAppointment">
+						<subreportParameterExpression><![CDATA[$F{ACTING_APPOINT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ReportDirectory">
+						<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ActingAppointmentSpace">
+						<subreportParameterExpression><![CDATA[$F{ACTING_APPOINT_SPACE}]]></subreportParameterExpression>
+					</subreportParameter>
+					
+<subreportParameter  name="ActingAppointmentLen">
+	<subreportParameterExpression><![CDATA[$F{ACTING_APPOINT_LEN}]]></subreportParameterExpression>
+</subreportParameter>					
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<!-- Modified on 20/09/2021 for directly use the jasper objects -->
+					<!--subreportExpression  class="java.lang.String"><![CDATA[$P{ReportDirectory} + "AAR_PI_ActingAppoint.jasper"]]></subreportExpression-->
+					<subreportExpression><![CDATA[$P{sr_aar_pi_aa}]]></subreportExpression>
+					<!-- End Modified on 20/09/2021 for directly use the jasper objects -->
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="25"
+						width="476"
+						height="10"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="TrainingCourse-SubReport"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<subreportParameter  name="ReportID">
+						<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="TrainingCourse">
+						<subreportParameterExpression><![CDATA[$F{TRAINING_COURSE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ReportDirectory">
+						<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="TraingCourseSpace">
+						<subreportParameterExpression><![CDATA[$F{TRAINING_COURSE_SPACE}]]></subreportParameterExpression>
+					</subreportParameter>
+
+<subreportParameter  name="TrainingCourseLen">
+	<subreportParameterExpression><![CDATA[$F{TRAINING_COURSE_LEN}]]></subreportParameterExpression>
+</subreportParameter>
+					
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<!-- Modified on 20/09/2021 for directly use the jasper objects -->
+					<!--subreportExpression  class="java.lang.String"><![CDATA[$P{ReportDirectory} + "AAR_PI_TrainingCourse.jasper"]]></subreportExpression-->
+					<subreportExpression><![CDATA[$P{sr_aar_pi_tc}]]></subreportExpression>
+					<!-- End Modified on 20/09/2021 for directly use the jasper objects -->
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="0"
+						width="476"
+						height="10"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="Main-SubReport"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<subreportParameter  name="ReportID">
+						<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ReportDirectory">
+						<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<!-- Modified on 20/09/2021 for directly use the jasper objects -->
+					<!--subreportExpression  class="java.lang.String"><![CDATA[$P{ReportDirectory} + "AAR_PI_Main.jasper"]]></subreportExpression-->
+					<subreportExpression><![CDATA[$P{sr_aar_pi_main}]]></subreportExpression>
+					<!-- End Modified on 20/09/2021 for directly use the jasper objects -->
+				</subreport>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

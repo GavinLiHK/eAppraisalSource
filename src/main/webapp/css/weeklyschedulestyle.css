@@ -1,0 +1,404 @@
+<<<<<<< weeklyschedulestyle.css
+<STYLE type="text/css">
+.EMPTY1
+{
+    BACKGROUND-COLOR: #cccccc;
+    COLOR: #333333;
+    FONT-FAMILY: Arial, Haettenschweiler;
+    FONT-SIZE: 13px
+}
+.TABLE_REMARK
+{
+    COLOR: #FF0000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px;
+}
+.LISTHEAD
+{
+    BACKGROUND-COLOR: #336699;
+    COLOR: #ffffff;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px;
+}
+.LISTBODY1
+{
+    BACKGROUND-COLOR: #DEE7F2;
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px
+}
+.LISTBODY2
+{
+    BACKGROUND-COLOR: #c8e1ff;
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px
+}
+.LIST_NORECORD
+{
+    BACKGROUND-COLOR: #c8e1ff;
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px
+}
+.LISTMENUHEAD
+{
+    BACKGROUND-COLOR: #94abba;
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 11px
+}
+.LISTBODY3
+{
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    PADDING-BOTTOM: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-RIGHT: 2px;
+    PADDING-TOP: 2px
+}
+.LISTBODY4
+{
+    BACKGROUND-COLOR: #cccccc;
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px;
+    97C4FF: #97C4FF
+}
+.ALERT
+{
+    BACKGROUND-COLOR: #ff9f9f;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console', 'Lucida Console';
+    FONT-SIZE: 12px
+}
+.INPUTHEAD
+{
+    BACKGROUND-COLOR: #ffebcd;
+    COLOR: black;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 16px;
+    FONT-WEIGHT: bold
+}
+.First
+{
+    BACKGROUND-COLOR: #ddebf1;
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold
+}
+.PAGEHEAD
+{
+    BACKGROUND-COLOR: #ffffff;
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bolder
+}
+.PAGEHEAD1
+{
+    BACKGROUND-COLOR: #ffffff;
+    COLOR: #0000cc;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bolder
+}
+.READONLY
+{
+    FONT-FAMILY: Arial;
+    TEXT-TRANSFORM: capitalize
+}
+.PAGEBACKGROUP
+{
+    BACKGROUND-COLOR: #ffffff
+}
+.INPUTLIST
+{
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 11px
+}
+.HEADER1
+{
+    COLOR: #993300;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 16px;
+    FONT-WEIGHT: bolder
+}
+.BODYHEADER
+{
+    COLOR: white;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 24px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: left;
+    VERTICAL-ALIGN: top
+}
+.BODYTEXT
+{
+    COLOR: black;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px;
+    TEXT-ALIGN: left;
+    VERTICAL-ALIGN: top
+}
+.TABSELECTOR_CUR
+{
+    BACKGROUND-COLOR: #f9a242;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+    VERTICAL-ALIGN: top
+}
+.TABSELECTOR_OTH
+{
+    BACKGROUND-COLOR: #c0c0c0;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+    VERTICAL-ALIGN: top
+}
+.TABSELECTOR1_CUR
+{
+    BACKGROUND-COLOR: #fef438;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+    VERTICAL-ALIGN: top
+}
+.TABSELECTOR1_OTH
+{
+    BACKGROUND-COLOR: #c0c0c0;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+    VERTICAL-ALIGN: top
+}
+.FIELDLABEL
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: left
+}
+.MANDFIELDLABEL
+{
+    BACKGROUND-COLOR: #97c4ff;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    PADDING-LEFT: 3px;
+    TEXT-ALIGN: left
+}
+.PROC_PTR_CUR
+{
+    BACKGROUND-COLOR: #ffffaa;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+    VERTICAL-ALIGN: top
+}
+.PROC_PTR_OTHER
+{
+    BACKGROUND-COLOR: #ddffdd;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+    VERTICAL-ALIGN: top
+}
+.DROPDOWNMENU
+{
+    BACKGROUND-COLOR: #97bad0;
+    COLOR: #ffffff;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    HEIGHT: 25px;
+    WIDTH: 100%
+}
+.DOCSTYLE
+{
+    BACKGROUND-COLOR: #FFFFFF
+}
+.TEXTBOXSTYLE
+{
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px
+}
+.BUTTONSTYLE
+{
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 14px
+}
+.READONLYINFO
+{
+    BACKGROUND-COLOR: #ffecb0;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px
+}
+.READONLYTEXTBOX
+{
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal
+}
+.WARNINGLABEL
+{
+    BACKGROUND-COLOR: yellow;
+    COLOR: red;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 16px;
+    FONT-WEIGHT: bold
+}
+.SEARCHWARNINGINFOLABEL
+{
+    BACKGROUND-COLOR: yellow;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 10px;
+    FONT-WEIGHT: bold
+}
+.WARNING
+{
+    BACKGROUND-COLOR: #98fb98;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console', 'Lucida Console';
+    FONT-SIZE: 12px
+}
+.ListBoxStyle
+{
+    COLOR: black;
+    FONT-FAMILY: 'Courier New';
+    FONT-SIZE: 12px
+}
+BODY
+{
+    BACKGROUND-COLOR: #ffffff;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px
+}
+.MENUCLOCK
+{
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    HEIGHT: 25px;
+    WIDTH: 100%
+}
+.GRID_START_TIME
+{
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 9px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+}
+.GRID_START_DATE
+{
+    BACKGROUND-COLOR: #999999;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 9px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+}
+.GRID_NOTITLE
+{
+    BACKGROUND-COLOR: #FFCC33;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    TEXT-ALIGN: center;
+}
+.GRID_PGM_INFO
+{
+    BACKGROUND-COLOR: #00B6E9;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 9px;
+    TEXT-ALIGN: center;
+}
+.GRID_EMPTY_PGM
+{
+    BACKGROUND-COLOR: #cccccc;
+    COLOR: #black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 9px;
+    TEXT-ALIGN: center;
+}
+.GRID_UMBRELLA_TITLE
+{
+    BACKGROUND-COLOR: #FFCCCC;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+}
+
+.GRID_MINIPGM
+{
+    BACKGROUND-COLOR: #98fb98;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    TEXT-ALIGN: center;
+}
+.GRID_CHANGE_R
+{
+    BACKGROUND-COLOR: #FFFF66;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center;
+}
+.MINIPGM
+{
+    BACKGROUND-COLOR: #98fb98;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+}
+.REPEAT
+{
+    BACKGROUND-COLOR: #daedff;
+    COLOR: black;
+    FONT-FAMILY: Arial, 'Lucida Console';
+    FONT-SIZE: 12px;
+}
+.MISSTAPE
+{
+    BACKGROUND-COLOR: red;
+    COLOR: #000000;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 12px
+}
+.subheading {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+	color: #FFFFFF;
+}
+
+</STYLE>

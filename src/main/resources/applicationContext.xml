@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util" 
+       xmlns:beans="http://www.springframework.org/schema/beans" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+	http://www.springframework.org/schema/jee
+	http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util-4.3.xsd"
+    
+	default-lazy-init="false" default-autowire="byName">
+	<description>Base Spring Application Config</description>
+	<!-- Load in application properties reference -->
+	<bean id="applicationProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="location" value="classpath:application-local.properties"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+	
+	<util:properties id="applicatioPro" location="classpath:application-local.properties" />  
+	
+<!-- 
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+        <property name="initialSize" value="${dbcp.initialSize}" />
+        <property name="maxIdle" value="${dbcp.maxIdle}" />
+        <property name="maxTotal" value="${dbcp.maxTotal}" />
+	</bean>
+-->
+<!-- 20230926 Change the DB connection to JNDI mode
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+        <property name="minPoolSize" value="3" />
+        <property name="maxPoolSize" value="50" />
+        <property name="acquireIncrement" value="1" />
+        <property name="testConnectionOnCheckin" value="true" />
+        <property name="idleConnectionTestPeriod" value="300" />
+        <property name="maxIdleTimeExcessConnections" value="240" />
+-->
+
+        <!-- Allowing SQL to run at most 60 minutes -->
+        <!-- property name="unreturnedConnectionTimeout" value="3600" /-->
+        
+        <!-- Not required for JDBC4 and c3p0-0.9.5 or above
+        <property name="preferredTestQuery" value="SELECT 1 FROM DUAL" />
+        -->
+  
+	<!-- </bean> -->
+<!-- End 20230926 Change the DB connection to JNDI mode -->      	
+	
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="${spring.datasource.jndi-name}"/>
+	</bean>
+    
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" id="namedParameterJdbcTemplate">
+	    <constructor-arg ref="dataSource" />
+	</bean>
+
+	<!--<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages.message" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	-->
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+       
+		<!-- Hibernate Config file Location -->
+        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
+                <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+                <prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+    
+    	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        	<property name="sessionFactory" ref="sessionFactory"></property>
+    	</bean>
+	<!-- Resource Bundle -->
+    	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages.message" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+<bean id="mvcHandlerMappingIntrospector" class="org.springframework.web.servlet.handler.HandlerMappingIntrospector">
+</bean>    
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    
+    <!--  configuration for handling browser back button  -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--<mvc:mapping path="/**/*"/>-->
+            <mvc:mapping path="/*"/>
+            <bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+                <property name="cacheSeconds" value="0"/>
+                <!-- 20250106 Spring framework was required to upgrade from version 6.1 to version 6.2. -->
+                <!-- property name="useExpiresHeader" value="true"/-->
+                <!-- property name="useCacheControlHeader" value="true"/-->
+                <!-- property name="useCacheControlNoStore" value="true"/-->
+                <!-- 20250106 Spring framework was required to upgrade from version 6.1 to version 6.2. -->
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>

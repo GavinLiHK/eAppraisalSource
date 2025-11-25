@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:b="http://www.springframework.org/schema/beans"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-6.3.xsd">
+    <!-- HTTP security configurations -->
+
+    <security:http pattern="/invalidLogin*" security="none" />
+    <security:http pattern="/logout*" security="none" />
+    <security:http pattern="/common/SendAutoReminder.do" security="none" />
+    <security:http pattern="/common/SendInitNotification.do" security="none" />
+    
+    <security:http create-session="never" use-expressions="true" auto-config="false" entry-point-ref="preAuthenticatedProcessingFilterEntryPoint">
+		<security:intercept-url pattern="/assess/ListOutstandingReport.do" access="permitAll" />
+		<security:intercept-url pattern="/admin/iniMonitorReport.do" access="hasAnyRole('ROLE_CFM_RPT_GG', 'ROLE_CRT_RPT_GG', 'ROLE_CFM_RPT_GMH_GMW', 'ROLE_CFM_RPT_GMH1', 'ROLE_CFM_RPT_GMW1', 'ROLE_CFM_RPT_GMW2', 'ROLE_CFM_RPT_GMW3', 'ROLE_CFM_RPT_GG1', 'ROLE_CFM_RPT_GMW4', 'ROLE_CFM_RPT_GMH2', 'ROLE_CFM_RPT_GMH3', 'ROLE_CFM_RPT_GMH4')" />
+		<security:intercept-url pattern="/assess/initSearchFinalReport.do" access="permitAll" />
+		<security:intercept-url pattern="/assess/initRptStatusMain.do" access="hasAnyRole('ROLE_CFM_RPT_GG','ROLE_CFM_RPT_GMH1','ROLE_CFM_RPT_GMW1','ROLE_CFM_RPT_GMW2','ROLE_CFM_RPT_GMW3','ROLE_CFM_RPT_GG1','ROLE_CFM_RPT_GMW4','ROLE_CFM_RPT_GMH2','ROLE_CFM_RPT_GMH3','ROLE_CFM_RPT_GMH4','ROLE_CRT_RPT_GG','ROLE_CFM_RPT_GMH_GMW')" />
+		<security:intercept-url pattern="/assess/initRptUserInfoMain.do" access="hasAnyRole('ROLE_CFM_RPT_GG','ROLE_CFM_RPT_GMH1','ROLE_CFM_RPT_GMW1','ROLE_CFM_RPT_GMW2','ROLE_CFM_RPT_GMW3','ROLE_CFM_RPT_GG1','ROLE_CFM_RPT_GMW4','ROLE_CFM_RPT_GMH2','ROLE_CFM_RPT_GMH3','ROLE_CFM_RPT_GMH4','ROLE_CRT_RPT_GG','ROLE_CFM_RPT_GMH_GMW')" />
+		<security:intercept-url pattern="/assess/initRptPeriodMain.do" access="hasAnyRole('ROLE_CFM_RPT_GG','ROLE_CFM_RPT_GMH1','ROLE_CFM_RPT_GMW1','ROLE_CFM_RPT_GMW2','ROLE_CFM_RPT_GMW3','ROLE_CFM_RPT_GG1','ROLE_CFM_RPT_GMW4','ROLE_CFM_RPT_GMH2','ROLE_CFM_RPT_GMH3','ROLE_CFM_RPT_GMH4','ROLE_CRT_RPT_GG','ROLE_CFM_RPT_GMH_GMW')" />
+		<security:intercept-url pattern="/workflow/WorkflowEnquiry.do" access="hasAnyRole('ROLE_CRT_RPT_GG', 'ROLE_CFM_RPT_GMH_GMW')" />
+		<security:intercept-url pattern="/assess/initSearchAppraisee.do" access="hasAnyRole('ROLE_CRT_RPT_GG', 'ROLE_CFM_RPT_GMH_GMW')" />
+		<security:intercept-url pattern="/assess/initBatch.do" access="hasAnyRole('ROLE_CFM_RPT_GG','ROLE_CRT_RPT_GG','ROLE_CFM_RPT_GMH_GMW','ROLE_CFM_RPT_GMH1','ROLE_CFM_RPT_GMW1','ROLE_CFM_RPT_GMW3','ROLE_CFM_RPT_GG1','ROLE_CFM_RPT_GMW4','ROLE_CFM_RPT_GMH2','ROLE_CFM_RPT_GMH3','ROLE_CFM_RPT_GMH4')" />
+		<security:intercept-url pattern="/admin/iniSystemParameterEnquiry.do" access="hasAnyRole('ROLE_CRT_RPT_GG', 'ROLE_CFM_RPT_GMH_GMW')" />
+		<security:intercept-url pattern="/assess/initBatchAppraisee.do" access="permitAll" />
+		<security:intercept-url pattern="/security/UserGroupEnquiry.do" access="hasAnyRole('ROLE_SYSADM')" />
+		<security:intercept-url pattern="/security/UserEnquiry.do" access="hasAnyRole('ROLE_SYSADM')" />
+
+		<security:intercept-url pattern="/common/*" access="permitAll" />
+		<security:intercept-url pattern="/login*" access="permitAll" />
+		<security:intercept-url pattern="/admin/*" access="permitAll" />
+		<security:intercept-url pattern="/admin/*" access="permitAll" />
+		<security:intercept-url pattern="/security/*" access="permitAll" />
+        <security:intercept-url pattern="/workflow/*" access="permitAll" />
+		<security:intercept-url pattern="/**" access="permitAll" />
+
+        <security:custom-filter position="PRE_AUTH_FILTER" ref="preAuthFilter" />
+        <!-- <security:session-management session-fixation-protection="none" /> -->
+        <security:session-management invalid-session-url="/invalidLogin.do?message=Session+Expired" />
+        <security:access-denied-handler error-page="/invalidLogin.do?message=Access+Denied" />
+        
+    </security:http>
+
+    <bean id="userDetailsServiceImpl" class="com.hkha.ea.service.common.impl.UserDetailsServiceImpl" />
+
+    <bean id="preAuthenticatedProcessingFilterEntryPoint" class="com.hkha.ea.domain.LinkForbiddenEntryPoint" />
+
+    <bean id="preAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+        <property name="preAuthenticatedUserDetailsService" ref="userDetailsServiceImpl" />
+    </bean>
+
+    <bean id="preAuthFilter" class="com.hkha.ea.service.filter.UrlParametersAuthenticationFilter">
+        <property name="authenticationManager" ref="appControlAuthenticationManager" />
+    </bean>
+    
+    <security:authentication-manager alias="appControlAuthenticationManager">
+        <security:authentication-provider ref="preAuthenticationProvider" />
+    </security:authentication-manager>
+</beans>

@@ -1,0 +1,186 @@
+package com.hkha.ea.dao.common.impl;
+
+import java.util.List;
+import java.util.Date;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.hkha.ea.common.Util;
+import com.hkha.ea.dao.common.EmployeeEnquiryDAO;
+import com.hkha.ea.dto.assess.SearchAppraiseeDto;
+import com.hkha.ea.dto.common.EmployeeEnquiryDTO;
+
+@Repository("employeeEnquiryDAO")
+public class EmployeeEnquiryDAOImpl implements EmployeeEnquiryDAO{
+	
+	private Log log = LogFactory.getLog(this.getClass());
+	
+	@Autowired
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	public List<EmployeeEnquiryDTO> search(String rank, String postUnit, String postTitle, String firstName,
+			String lastName, String employeeNum) {
+		StringBuffer mainCriteria = new StringBuffer();
+		
+		mainCriteria.append("select per_all_people_f.attribute14 rank, hr_organization_units.NAME postUnit, per_all_people_f.employee_number employeeNum,  ")
+					.append("per_all_people_f.LAST_NAME lastName, per_all_people_f.FIRST_NAME firstName, per_all_people_f.full_name employeeFullName  ")
+					.append("from per_all_people_f, per_all_assignments_f, hr_organization_units, per_person_types  ")
+					.append("where 1=1  ");
+		
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+
+		//First name  
+		if(!Util.isEmptyString(firstName) ){
+			mainCriteria.append(" and UPPER(per_all_people_f.first_name) like '%'||:firstName||'%' ");
+			paramSource.addValue("firstName", Util.handleSCInSQL(firstName.toUpperCase()));
+		}
+			
+		
+		//Last name  
+		if(!Util.isEmptyString(lastName) ){
+			mainCriteria.append(" and UPPER(per_all_people_f.last_name) like '%'||:lastName||'%' ");
+			paramSource.addValue("lastName", Util.handleSCInSQL(lastName.toUpperCase()));
+		}
+			
+		
+		//Rank
+		if(!Util.isEmptyString(rank)){
+			mainCriteria.append(" and UPPER(per_all_people_f.attribute14) like '%'||:rank||'%' ");
+			paramSource.addValue("rank", Util.handleSCInSQL(rank.toUpperCase()));
+		}
+		//Post unit 
+		if(!Util.isEmptyString(postUnit) ){
+			mainCriteria.append(" and UPPER(").append("hr_organization_units.NAME").append(") like '%'||:postUnit||'%' ");
+			paramSource.addValue("postUnit", Util.handleSCInSQL(postUnit.toUpperCase()));
+
+		}
+     	if ( !Util.isEmptyString(postTitle) )
+     	{
+     	    mainCriteria.append(" and per_all_people_f.employee_number in (");
+     	    mainCriteria.append(" select distinct hcpv.employee_number from ha_common_people_v hcpv where hcpv.eng_post_title ");
+     		mainCriteria.append(" like '%'||:postTitle||'%' ");
+     		mainCriteria.append(") ");
+     		
+     		paramSource.addValue("postTitle", postTitle.toUpperCase());
+     	}
+     	
+     	//employee number
+     	if(!Util.isEmptyString(employeeNum)){
+     		//mainCriteria.append(" and UPPER(").append("per_all_people_f.employee_number").append(") like '%'||:employeeNum||'%' ");
+     		mainCriteria.append(" and per_all_people_f.employee_number like '%'||:employeeNum||'%' ");
+			paramSource.addValue("employeeNum", Util.handleSCInSQL(employeeNum.toUpperCase()));
+     	}
+
+		mainCriteria.append( getGenerateSql() );
+		mainCriteria.append("order by per_all_people_f.full_name asc");
+		log.info("search employee sql====="+mainCriteria.toString());
+		List<EmployeeEnquiryDTO> result = namedParameterJdbcTemplate.query(mainCriteria.toString(), paramSource, new BeanPropertyRowMapper<EmployeeEnquiryDTO>(EmployeeEnquiryDTO.class));
+		return result;
+	}
+
+	public List<EmployeeEnquiryDTO> searchByFullName(String employeeFullName) {
+		StringBuffer mainCriteria = new StringBuffer();
+		mainCriteria.append("select per_all_people_f.attribute14 rank, hr_organization_units.NAME postUnit, per_all_people_f.employee_number employeeNum,  ")
+					.append("per_all_people_f.LAST_NAME lastName, per_all_people_f.FIRST_NAME firstName, per_all_people_f.full_name employeeFullName  ")
+					.append("from per_all_people_f, per_all_assignments_f, hr_organization_units, per_person_types  ")
+					.append("where 1=1  ");
+		
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+		
+		if(!Util.isEmptyString(employeeFullName) ){
+			mainCriteria.append(" and UPPER(").append("per_all_people_f.full_name").append(") like '%'||:employeeFullName||'%' ");
+			paramSource.addValue("employeeFullName", Util.handleSCInSQL(employeeFullName.toUpperCase()));
+		}
+
+		mainCriteria.append( getGenerateSql() );
+		
+		mainCriteria.append("order by per_all_people_f.full_name asc");
+		List<EmployeeEnquiryDTO> result = namedParameterJdbcTemplate.query(mainCriteria.toString(), paramSource, new BeanPropertyRowMapper<EmployeeEnquiryDTO>(EmployeeEnquiryDTO.class));
+		return result;
+	}
+	
+	  //$CUSTOMMETHODS$
+		//Put custom methods between these comments, otherwise they will be
+		// overwritten if the model is regenerated
+		private StringBuffer getGenerateSql() {
+			StringBuffer defaultCriteria = new StringBuffer("");
+			
+			defaultCriteria
+				//edited on 20180102 employee search problem
+				/*.append(" and sysdate between per_all_people_f.effective_start_date and per_all_people_f.effective_end_date")
+				.append(" and sysdate between per_all_assignments_f.effective_start_date and per_all_assignments_f.effective_end_date")*/
+				.append(" and trunc(sysdate) between per_all_people_f.effective_start_date and per_all_people_f.effective_end_date")
+				.append(" and trunc(sysdate) between per_all_assignments_f.effective_start_date and per_all_assignments_f.effective_end_date")
+				//end edited on 20180102
+				.append(" and per_all_people_f.business_group_id = per_all_assignments_f.business_group_id")
+				.append(" and per_all_assignments_f.business_group_id = hr_organization_units.business_group_id")
+				.append(" and hr_organization_units.business_group_id = per_person_types.business_group_id")
+
+				.append(" and per_all_assignments_f.person_id=per_all_people_f.person_id") 
+				.append(" and per_all_assignments_f.organization_id = hr_organization_units.organization_id") 
+				.append(" and per_all_assignments_f.primary_flag='Y'") 
+				.append(" and per_person_types.person_type_id = ha_global.get_person_type_id(per_all_people_f.person_id, per_all_people_f.effective_end_date)") 
+				.append(" and per_person_types.active_flag='Y'") 
+				.append(" and per_person_types.system_person_type='EMP'") 
+				.append(" and (per_person_types.business_group_id = ha_global.get_business_group_id(ha_global.get_housing_authority))")
+				//.append(" and per_all_people_f.effective_end_date = per_all_assignments_f.effective_end_date ")
+				;
+			
+			return defaultCriteria;
+		}
+		
+		public List<EmployeeEnquiryDTO>  searchEmployeeNameAndRankByEmployeeNum(String employeeNum) {
+			StringBuffer mainCriteria = new StringBuffer();
+			mainCriteria.append("select per_all_people_f.attribute14 rank, hr_organization_units.NAME postUnit, per_all_people_f.employee_number employeeNum,  ")
+						.append("per_all_people_f.LAST_NAME lastName, per_all_people_f.FIRST_NAME firstName, per_all_people_f.full_name employeeFullName  ")
+						.append("from per_all_people_f, per_all_assignments_f, hr_organization_units, per_person_types  ")
+						.append("where 1=1  ");
+			
+			MapSqlParameterSource paramSource = new MapSqlParameterSource();
+			if(!Util.isEmptyString(employeeNum)){
+				 mainCriteria.append("and per_all_people_f.employee_number").append(" = '").append(employeeNum).append("' ");
+			}
+			mainCriteria.append( getGenerateSql() );
+			mainCriteria.append("order by per_all_people_f.effective_start_date desc");
+			
+			List<EmployeeEnquiryDTO> result = namedParameterJdbcTemplate.query(mainCriteria.toString(), paramSource, new BeanPropertyRowMapper<EmployeeEnquiryDTO>(EmployeeEnquiryDTO.class));
+			return result;
+		}
+		
+		public List<EmployeeEnquiryDTO> searchByEmployee(String employeeNumber) {
+			StringBuffer mainCriteria = new StringBuffer("");
+			mainCriteria.append("select per_all_people_f.email_address emailAddress, per_all_people_f.full_name employeeFullName ");
+			mainCriteria.append("from per_all_people_f, per_all_assignments_f, hr_organization_units, per_person_types ");
+			mainCriteria.append("where employee_number").append(" = '").append(employeeNumber).append("' ");
+			mainCriteria.append( getGenerateSql() );
+			
+			mainCriteria.append("order by per_all_people_f.effective_start_date desc");
+			List<EmployeeEnquiryDTO> result = namedParameterJdbcTemplate.query(mainCriteria.toString(), new BeanPropertyRowMapper<EmployeeEnquiryDTO>(EmployeeEnquiryDTO.class));
+			return result;
+		}
+		
+		//added on 20180131 incorrect employee number issue
+		public boolean isEmployeeExist(String empNum, String commDate){
+			StringBuffer criteria = new StringBuffer();
+	       	criteria.append("select papf.full_name employeeFullName, papf.employee_number employeeNum ");
+	       	criteria.append("FROM per_all_people_f papf, per_periods_of_service ppos ");
+	       	criteria.append("where papf.person_id=ppos.person_id ");
+	       	criteria.append("and ppos.actual_termination_date is null ");
+	       	criteria.append("and papf.EMPLOYEE_NUMBER = '").append(empNum).append("' ");
+	       	criteria.append("and to_date(").append(commDate).append(",'dd-mon-yyyy') between papf.effective_start_date and papf.effective_end_date");
+			//List<EmployeeEnquiryDTO> result = namedParameterJdbcTemplate.query(criteria.toString(), new BeanPropertyRowMapper<EmployeeEnquiryDTO>(EmployeeEnquiryDTO.class));
+	       	List<EmployeeEnquiryDTO> result = namedParameterJdbcTemplate.query(criteria.toString(), new BeanPropertyRowMapper<EmployeeEnquiryDTO>(EmployeeEnquiryDTO.class));
+			if(result != null && result.size() > 0){
+				return true;
+			}
+			return false;
+			
+		}
+		//end added on 20180131 incorrect employee number issue
+}

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.3.final using JasperReports Library version 6.0.3  -->
+<!-- 2016-05-24T14:45:18 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Memo_Part1" pageWidth="496" pageHeight="751" whenNoDataType="AllSectionsNoDetail" columnWidth="496" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7c3c54a2-edbe-48f0-b1e8-30e529d39c20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="ReportID" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("151")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("C:\\iReport\\Reports\\Memo\\")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="RoleCode" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Role Code]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new java.lang.String("")]]></defaultValueExpression>
+	</parameter>
+	<!-- Modified on 20/09/2021 for directly use the jasper objects -->
+	<parameter name="sr_memo_part1_ap" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_memo_part1_ao" class="net.sf.jasperreports.engine.JasperReport"/>
+	<!-- End Modified on 20/09/2021 for directly use the jasper objects -->
+	<queryString>
+		<![CDATA[SELECT MD.MEMO_FROM, MD.REF1, MD.REF2, MD.TEL_NO, MD.FAX_NO, 
+MD.MEMO_FROM_DATE, MD.MEMO_TO, MD.VIA, MD.YOUR_REF1, MD.YOUR_REF2
+,MD.MEMO_TO_DATE, MD.TOTAL_PAGES, REPLACE(MD.DUTY_DESC, utl_raw.cast_to_varchar2('F48FBFBD')) as DUTY_DESC, MD.OVERALL_PERF,
+REPLACE(MD.OVERALL_COMMENT, utl_raw.cast_to_varchar2('F48FBFBD')) as OVERALL_COMMENT,MD.PERF_BONUS_AO, MD.SALARY_ADJ_AO, MD.AO_NAME,
+MD.AO_RANK,R.NAME, R.CHINESE_NAME, R.SUBSTANTIVE_RANK, R.PRESENT_POST, R.DIVISION, 
+TO_CHAR(R.COMMENCE_DATE,'DD-MON-YYYY') "COMMENCE_DATE", 
+TO_CHAR(R.END_DATE,'DD-MON-YYYY') "END_DATE"
+FROM HA_HR_EA_MEMO_DETAILS MD, HA_HR_EA_REPORT R
+WHERE R.REPORT_ID = $P{ReportID}
+AND MD.REPORT_ID = R.REPORT_ID]]>
+	</queryString>
+	<field name="MEMO_FROM" class="java.lang.String"/>
+	<field name="REF1" class="java.lang.String"/>
+	<field name="REF2" class="java.lang.String"/>
+	<field name="TEL_NO" class="java.lang.String"/>
+	<field name="FAX_NO" class="java.lang.String"/>
+	<field name="MEMO_FROM_DATE" class="java.lang.String"/>
+	<field name="MEMO_TO" class="java.lang.String"/>
+	<field name="VIA" class="java.lang.String"/>
+	<field name="YOUR_REF1" class="java.lang.String"/>
+	<field name="YOUR_REF2" class="java.lang.String"/>
+	<field name="MEMO_TO_DATE" class="java.lang.String"/>
+	<field name="TOTAL_PAGES" class="java.lang.String"/>
+	<field name="DUTY_DESC" class="java.lang.String"/>
+	<field name="OVERALL_PERF" class="java.lang.String"/>
+	<field name="OVERALL_COMMENT" class="java.lang.String"/>
+	<field name="PERF_BONUS_AO" class="java.lang.String"/>
+	<field name="SALARY_ADJ_AO" class="java.lang.String"/>
+	<field name="AO_NAME" class="java.lang.String"/>
+	<field name="AO_RANK" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="CHINESE_NAME" class="java.lang.String"/>
+	<field name="SUBSTANTIVE_RANK" class="java.lang.String"/>
+	<field name="PRESENT_POST" class="java.lang.String"/>
+	<field name="DIVISION" class="java.lang.String"/>
+	<field name="COMMENCE_DATE" class="java.lang.String"/>
+	<field name="END_DATE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement key="Part1-SR-AP" positionType="Float" mode="Opaque" x="0" y="0" width="496" height="51" forecolor="#000000" backcolor="#FFFFFF" uuid="40aeb441-55ad-43b6-a011-65252c2f7119"/>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<!-- Modified on 20/09/2021 for directly use the jasper objects -->
+				<!--subreportExpression><![CDATA[$P{ReportDirectory}+"Memo_Part1_AP.jasper"]]></subreportExpression-->
+				<subreportExpression><![CDATA[$P{sr_memo_part1_ap}]]></subreportExpression>
+				<!-- End Modified on 20/09/2021 for directly use the jasper objects -->
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="Part1-SR-AO" positionType="Float" mode="Opaque" x="0" y="74" width="496" height="51" forecolor="#000000" backcolor="#FFFFFF" uuid="99961957-7d81-4427-9771-86394ac57c87">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(!($P{RoleCode}.equals("AP")))]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<!-- Modified on 20/09/2021 for directly use the jasper objects -->
+				<!--subreportExpression><![CDATA[$P{ReportDirectory}+"Memo_Part1_AO.jasper"]]></subreportExpression-->
+				<subreportExpression><![CDATA[$P{sr_memo_part1_ao}]]></subreportExpression>
+				<!-- End Modified on 20/09/2021 for directly use the jasper objects -->
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

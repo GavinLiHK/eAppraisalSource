@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2022-06-01T11:39:29 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Memo_Part2_CO" pageWidth="467" pageHeight="341" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="467" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cc11d2ef-00dd-4c48-90bf-e2fe022d3507">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="ReportID" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("151")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("C:/iReport/Reports/Memo/")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT MD.PERF_BONUS_CO, MD.SALARY_ADJ_CO, MD.CO_NAME, MD.CO_RANK, MD.CO_DATE
+FROM HA_HR_EA_MEMO_DETAILS MD
+WHERE MD.REPORT_ID = $P{ReportID}]]>
+	</queryString>
+	<field name="PERF_BONUS_CO" class="java.lang.String"/>
+	<field name="SALARY_ADJ_CO" class="java.lang.String"/>
+	<field name="CO_NAME" class="java.lang.String"/>
+	<field name="CO_RANK" class="java.lang.String"/>
+	<field name="CO_DATE" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="341" splitType="Stretch">
+			<staticText>
+				<reportElement key="txtPartIV" positionType="Float" mode="Transparent" x="0" y="0" width="467" height="83" forecolor="#000000" backcolor="#FFFFFF" uuid="bcfd303b-5fae-4b76-99d1-2cbf6c0a6e43"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style size="10"><style fontName="Times New Roman" pdfFontName="Times-Bold" pdfEncoding="CP1252" isBold="true">Part IV: Recommendation by Countersigning Officer </style>第四部份：加簽人員建議</style><style size="8">
+
+</style><style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Please indicate your recommendation on whether the appraisee should be granted a merit payment and the 
+annual salary adjustment, subject to his meeting the eligibility criteria, by selecting the appropriate option.  Please refer to the administrative guidelines for the eligibility criteria and principles to be considered before making 
+recommendation. </style>如受評人符合有關給予工作表現獎金及每年薪金調整的資格，請選取適當的建議，表明是否建議給予受評人工作表現獎金及每年薪金調整。作出建議前請參考行政指引所列的資格及原則。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtCOPABox" positionType="Float" mode="Opaque" x="17" y="104" width="450" height="95" forecolor="#000000" backcolor="#FFFFFF" uuid="bcabe36e-388c-45b8-a5eb-0ac4cf2c5bf6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">(i)   Merit Payment</style> 工作表現獎金<style size="8">
+
+</style>        <style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">Recommended</style>  建議給予                            <style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">Not Recommended</style>  不建議給予<style size="8">
+
+</style><style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">(ii)   Annual Salary Adjustment</style> 每年薪金調整<style size="8">
+
+</style>        <style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">Recommended</style>  建議給予                            <style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">Not Recommended</style>  不建議給予
+]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgUnClickPBR-1" positionType="Float" mode="Transparent" x="180" y="132" width="11" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="76ba2298-a63e-4125-8a80-9f1472804855"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgClickPBR-1" positionType="Float" mode="Transparent" x="180" y="132" width="11" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="aaf3dbff-6216-47c0-aeaa-02f6f411b3e9">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(new String($F{PERF_BONUS_CO}).charAt(0)=='1')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgUnClickPBNR-1" positionType="Float" mode="Transparent" x="420" y="132" width="11" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="d3733597-c57d-4adc-9fb1-f6baa587d3e2"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgClickPBNR-1" positionType="Float" mode="Transparent" x="420" y="132" width="11" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="fc6e650c-dc37-4c58-b617-55212c6902fc">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(new String($F{PERF_BONUS_CO}).charAt(0)=='2')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgUnClickSAR-1" positionType="Float" mode="Transparent" x="180" y="180" width="11" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="a5a5bb1f-6c77-4320-b786-0556f2bd2601"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgClickSAR-1" positionType="Float" mode="Transparent" x="180" y="180" width="11" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="604c7c26-10e6-4205-ad89-3a19917b254d">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(new String($F{SALARY_ADJ_CO}).charAt(0)=='1')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgUnClickSANR-1" positionType="Float" mode="Transparent" x="420" y="180" width="11" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="26e6c6a1-43f8-4c4d-ac71-2eb7942197c5"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgClickSANR-1" positionType="Float" mode="Transparent" x="420" y="180" width="11" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="5e8df6bb-35ef-4b23-a8c2-0e690990fb34">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(new String($F{SALARY_ADJ_CO}).charAt(0)=='2')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement key="txtCoSign" positionType="Float" mode="Opaque" x="1" y="273" width="185" height="31" forecolor="#000000" backcolor="#FFFFFF" uuid="0709820e-b483-4b88-aa02-0c4c4ee91079"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Signature of Countersigning Officer</style>
+加簽人員簽署]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tCOSign" positionType="Float" mode="Opaque" x="192" y="286" width="90" height="37" forecolor="#000000" backcolor="#FFFFFF" uuid="091640a6-cc06-4c68-a871-ad106233aff3"/>
+				<box topPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CO_NAME}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-11" positionType="Float" mode="Opaque" x="187" y="286" width="5" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="d9d9088d-d35a-4c1c-84d4-555caea1b1ee"/>
+				<box topPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-12" positionType="Float" mode="Opaque" x="282" y="286" width="5" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="34b2162e-9360-4afc-9201-798e0eebad8e"/>
+				<box topPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtCoRank" positionType="Float" mode="Opaque" x="288" y="272" width="63" height="28" forecolor="#000000" backcolor="#FFFFFF" uuid="69026d2f-54d7-4745-9327-506b9d3cba5e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">Rank</style>  職級]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="tCoRank" positionType="Float" mode="Opaque" x="352" y="272" width="92" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="cc963a1c-827c-44dc-b64a-1872da6c918b"/>
+				<box leftPadding="5" bottomPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CO_RANK}.replaceAll("'","’").replaceAll("`","‘")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtCODate" positionType="Float" mode="Opaque" x="287" y="315" width="63" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="2d5fc10d-c162-4d55-934f-6f08b1534abf"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252" size="12">Date</style>  日期]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement key="tCoDate" positionType="Float" mode="Opaque" x="352" y="315" width="92" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="2a81f097-9fda-4299-83a0-fd084b7aa283"/>
+				<box leftPadding="5" bottomPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None">
+					<font fontName="新細明體" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CO_DATE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

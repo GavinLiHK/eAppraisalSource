@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2022-06-01T11:08:31 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Memo_Part1_AO" pageWidth="496" pageHeight="751" whenNoDataType="AllSectionsNoDetail" columnWidth="496" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8e4ee123-5601-45c1-8c1a-152e053c66b8">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="ReportID" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("151")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("D:/Project/HA/Reports/")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT MD.OVERALL_PERF, REPLACE(MD.OVERALL_COMMENT, utl_raw.cast_to_varchar2('F48FBFBD')) as OVERALL_COMMENT,
+--20240923 Remove chr(255) from the database value
+--chr(255) as OVERALL_COMMENT_SPACE,
+' ' as OVERALL_COMMENT_SPACE,
+--End 20240923 Remove chr(255) from the database value
+MD.PERF_BONUS_AO, MD.SALARY_ADJ_AO
+,lengthb(MD.OVERALL_COMMENT ) - length(MD.OVERALL_COMMENT ) as OVERALL_COMMENT_LEN
+FROM HA_HR_EA_MEMO_DETAILS MD
+WHERE MD.REPORT_ID = $P{ReportID}]]>
+	</queryString>
+	<field name="OVERALL_PERF" class="java.lang.String"/>
+	<field name="OVERALL_COMMENT" class="java.lang.String"/>
+	<field name="OVERALL_COMMENT_SPACE" class="java.lang.String"/>
+	<field name="PERF_BONUS_AO" class="java.lang.String"/>
+	<field name="SALARY_ADJ_AO" class="java.lang.String"/>
+	<field name="OVERALL_COMMENT_LEN" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement key="txtOverallPerfComment-1" positionType="Float" mode="Opaque" x="1" y="93" width="426" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="e4a15801-1a9e-4e12-b00b-959b2bab9591"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="PMingLiU" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">B. Comments on Overall Performance </style> 整體工作表現評語]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtPart3-1" positionType="Float" mode="Opaque" x="0" y="4" width="457" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="1c0788aa-ebc5-4dbf-b91d-1332aa4766f3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="PMingLiU" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Bold" pdfEncoding="CP1252">Part III: to be completed by Appraising Officer</style> 第三部份：由評核人員填寫]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtOverallPerformance-1" positionType="Float" mode="Opaque" x="0" y="43" width="458" height="35" forecolor="#000000" backcolor="#FFFFFF" uuid="248e6163-7a37-449e-a048-77c9ac7e86a5"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font fontName="PMingLiU" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">A. Overall Performance </style> 整體工作表現
+(<style fontName="Times New Roman" pdfFontName="Times-Roman" pdfEncoding="CP1252">Please tick the appropriate box </style>在適當之方格內劃上ˊ號)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-3" positionType="Float" mode="Opaque" x="331" y="43" width="45" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="fe4b39da-e5ac-4e99-af71-cde3925d4997"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[D]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-4" positionType="Float" mode="Opaque" x="374" y="43" width="45" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="a2389ae3-8403-4f41-b84a-9a2f010b5468"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-5" positionType="Float" mode="Opaque" x="286" y="43" width="45" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="210b1011-9c00-49e5-a12b-4c0c567de1e1"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[C]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-6" positionType="Float" mode="Opaque" x="241" y="43" width="45" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="ad8f142f-4c5f-4f3a-a432-d1b68f645d78"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-7" positionType="Float" mode="Opaque" x="196" y="43" width="45" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="91158736-6f0c-4305-b2a3-42fbebe9e0de"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgUnClickA-1" positionType="Float" mode="Opaque" x="227" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="b88b0c12-2019-49ff-a867-d8752a71abda"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgClickA-1" positionType="Float" mode="Opaque" x="227" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="ea0853d4-49e6-4120-bf6e-2ffa4d0a0ada">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(new String($F{OVERALL_PERF}).charAt(0)=='A')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgUnClickB-1" positionType="Float" mode="Opaque" x="271" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="f618012e-088f-4380-9246-03b1098b5be6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgClickB-1" positionType="Float" mode="Opaque" x="271" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="dd5afb2f-f968-4591-a43d-4f43560f3461">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(new String($F{OVERALL_PERF}).charAt(0)=='B')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgUnClickC-1" positionType="Float" mode="Opaque" x="317" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="69112ceb-2d33-4b58-b3a7-aab55684fd54"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgClickC-1" positionType="Float" mode="Opaque" x="317" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="9ac70c1f-fa37-464f-bd5f-e306ed312030">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(new String($F{OVERALL_PERF}).charAt(0)=='C')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgUnClickD-1" positionType="Float" mode="Opaque" x="361" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="b2c3b973-eaa0-4a18-8414-a380478b282e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgClickD-1" positionType="Float" mode="Opaque" x="361" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="2f7d03a2-83f4-423a-90a1-a449d224d230">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(new String($F{OVERALL_PERF}).charAt(0)=='D')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgUnClickE-1" positionType="Float" mode="Opaque" x="404" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="9b1fea23-0c74-4416-9ef4-d0692a0507d5"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/UnClick.gif"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="imgClickE-1" positionType="Float" mode="Opaque" x="404" y="47" width="8" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="dceb9822-beb3-4112-bf0e-9f10c2beec19">
+					<printWhenExpression><![CDATA[new java.lang.Boolean(new String($F{OVERALL_PERF}).charAt(0)=='E')]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{ReportDirectory} + "Image/Click.gif"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="137" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="tComment-1" positionType="Float" mode="Transparent" x="15" y="11" width="453" height="122" forecolor="#000000" backcolor="#FFFFFF" uuid="5506e88c-9617-43b9-8d4f-cfb72f402f7d">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{OVERALL_COMMENT}!= null)]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="5" leftPadding="5" rightPadding="5">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="MingLiU" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ($F{OVERALL_COMMENT_LEN}.intValue() > 0 ) ? $F{OVERALL_COMMENT}.replaceAll("'","’").replaceAll("`","‘") : $F{OVERALL_COMMENT} ) + $F{OVERALL_COMMENT_SPACE}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="0">
+				<reportElement key="rectangle-1" positionType="Float" mode="Transparent" x="15" y="11" width="453" height="122" forecolor="#000000" backcolor="#FFFFFF" uuid="6f450f7f-28d1-4808-aa53-bd2f38c9b7d8">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{OVERALL_COMMENT}== null)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

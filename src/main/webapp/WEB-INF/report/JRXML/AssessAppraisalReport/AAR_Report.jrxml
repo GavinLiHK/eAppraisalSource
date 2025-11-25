@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2022-06-02T11:36:18 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AAR_Report" pageWidth="595" pageHeight="842" columnWidth="531" leftMargin="42" rightMargin="22" topMargin="7" bottomMargin="28" uuid="1df25205-1df7-4e11-936e-e510a3d34a91">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.5937424601000023"/>
+	<property name="ireport.x" value="552"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="ReportID" class="java.lang.String">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("582")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="StaffType" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Staff Type]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("CHO")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" class="java.lang.String">
+		<parameterDescription><![CDATA[File Path]]></parameterDescription>
+		<defaultValueExpression><![CDATA["C:\\iReport\\reports\\AssessAppraisalReport\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Role" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Role]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new java.lang.String("J")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="RoleCode" class="java.lang.String">
+		<parameterDescription><![CDATA[Role Code]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new java.lang.String("A")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sr_coverpage" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_pi" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_a" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b1" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b3" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b4" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b5" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b6" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b7" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b8" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b5_part2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b8_part2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b5_part3" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b7_part3" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b7_part4" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_pi_main" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_pi_aa" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_pi_tc" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_a_part2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b2_part1" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b2_part1_2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b2_part2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_partb6_dn" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b6_part2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b6_part3" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_pa_box" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_pb_sa_box" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_memo_part1_2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString>
+		<![CDATA[SELECT hher.NAME, hher.EMPLOYEE_NUMBER, hher.SUBSTANTIVE_RANK,
+hher.COMMENCE_DATE, hher.END_DATE, hhert.VALUE
+FROM HA_HR_EA_REPORT_TEMP hhert, HA_HR_EA_REPORT hher
+WHERE hhert.ID=1
+AND hhert.VALUE <= $P{Role}
+AND hher.REPORT_ID = $P{ReportID}
+Order by hhert.VALUE]]>
+	</queryString>
+	<field name="VALUE" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="EMPLOYEE_NUMBER" class="java.lang.String"/>
+	<field name="SUBSTANTIVE_RANK" class="java.lang.String"/>
+	<field name="COMMENCE_DATE" class="java.sql.Timestamp"/>
+	<field name="END_DATE" class="java.sql.Timestamp"/>
+	<group name="PI" isStartNewColumn="true" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{VALUE}]]></groupExpression>
+		<groupHeader>
+			<band splitType="Stretch"/>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="17" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="tPageNumber" mode="Opaque" x="239" y="0" width="56" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="75e03269-7dd0-4b07-9ac9-a80423027436"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement key="CoverPage" positionType="Float" mode="Opaque" x="0" y="1" width="506" height="3" forecolor="#000000" backcolor="#FFFFFF" uuid="027bfbd3-f2ed-419a-bad6-d347c8fbf667">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='A')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="StaffType">
+					<subreportParameterExpression><![CDATA[$P{StaffType}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_coverpage}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PI" positionType="Float" mode="Opaque" x="0" y="0" width="506" height="3" forecolor="#000000" backcolor="#FFFFFF" uuid="f37e49f4-89c4-4525-a465-dc7f412edb9d">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='B')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_pi_main">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_pi_main}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_pi_aa">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_pi_aa}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_pi_tc">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_pi_tc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_pi}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartA" positionType="Float" mode="Opaque" x="0" y="0" width="531" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="c69a294a-a931-4011-9280-0b61db0459b6">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='C')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_a_part2">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_a_part2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_a}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB1" positionType="Float" mode="Opaque" x="0" y="0" width="531" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="0a0e5072-da73-4d31-9856-fc5153e4f65a">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='D')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b1}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB2" positionType="Float" mode="Opaque" x="0" y="0" width="506" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="2d15b7a0-ec09-4dac-9a3e-868b180c42d0">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='E')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_b2_part1">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_b2_part1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_b2_part2">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_b2_part2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b2}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB3" positionType="Float" mode="Opaque" x="0" y="0" width="506" height="3" forecolor="#000000" backcolor="#FFFFFF" uuid="b226bdc6-256b-49ad-9702-207f3cb537c8">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='F')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_pb_sa_box">
+					<subreportParameterExpression><![CDATA[$P{sr_pb_sa_box}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b3}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB4" positionType="Float" mode="Opaque" x="0" y="5" width="506" height="3" forecolor="#000000" backcolor="#FFFFFF" uuid="0efce0dd-fb5a-4364-8f5b-1f37ec408f23">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='F')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_pa_box">
+					<subreportParameterExpression><![CDATA[$P{sr_pa_box}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b4}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB5" positionType="Float" mode="Opaque" x="0" y="0" width="506" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="e30a7ed1-0448-4804-b7c5-941c0e18b719">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='G')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b5}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB6" positionType="Float" mode="Opaque" x="0" y="0" width="506" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="c22714b4-c339-4ea6-983b-418b76bca273">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='H')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_partb6_dn">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_partb6_dn}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_b6_part2">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_b6_part2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_b6_part3">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_b6_part3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b6}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB7" positionType="Float" mode="Opaque" x="0" y="0" width="506" height="3" forecolor="#000000" backcolor="#FFFFFF" uuid="29c3d24f-f27a-453a-8858-f592c5d5c6ed">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='I' && $P{StaffType}.compareTo("CHO")==0)]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b7}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB8" positionType="Float" mode="Opaque" x="0" y="12" width="506" height="2" forecolor="#000000" backcolor="#FFFFFF" uuid="6854d9b9-14b3-45f9-8c1c-ad06bc4286c7">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='I' && $P{Role}.charAt(0)=='J')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="StaffType">
+					<subreportParameterExpression><![CDATA[$P{StaffType}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_pa_box">
+					<subreportParameterExpression><![CDATA[$P{sr_pa_box}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b8}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB5-4" positionType="Float" mode="Opaque" x="3" y="8" width="506" height="3" forecolor="#000000" backcolor="#FFFFFF" uuid="7f714115-63a9-48f5-9b0e-74f502557888">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='G')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_pa_box">
+					<subreportParameterExpression><![CDATA[$P{sr_pa_box}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b5_part2}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB8-2" positionType="Float" mode="Opaque" x="0" y="16" width="506" height="2" forecolor="#000000" backcolor="#FFFFFF" uuid="1c523ca8-c468-4a30-ba35-072fd35e018e">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='I' && $P{Role}.charAt(0)=='J')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_pb_sa_box">
+					<subreportParameterExpression><![CDATA[$P{sr_pb_sa_box}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b8_part2}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB5-3" positionType="Float" mode="Opaque" x="2" y="4" width="506" height="2" forecolor="#000000" backcolor="#FFFFFF" uuid="3e5f0dd7-f688-4981-b659-61aa1b82c67f">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='G')]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_pb_sa_box">
+					<subreportParameterExpression><![CDATA[$P{sr_pb_sa_box}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b5_part3}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB7-3" positionType="Float" mode="Opaque" x="0" y="6" width="506" height="2" forecolor="#000000" backcolor="#FFFFFF" uuid="aa5151c5-5787-47db-afd8-12b2beae5652">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='I' && $P{StaffType}.compareTo("CHO")==0)]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_pb_sa_box">
+					<subreportParameterExpression><![CDATA[$P{sr_pb_sa_box}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b7_part3}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="PartB7-4" positionType="Float" mode="Opaque" x="0" y="9" width="506" height="2" forecolor="#000000" backcolor="#FFFFFF" uuid="fe7faf17-b7e9-4b16-9ee0-c788e6ffa6f6">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{VALUE}.charAt(0)=='I' && $P{StaffType}.compareTo("CHO")==0)]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_pa_box">
+					<subreportParameterExpression><![CDATA[$P{sr_pa_box}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b7_part4}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="tStartDate-2" mode="Opaque" x="407" y="0" width="55" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="fb7d87f9-28dd-4bd1-bc51-6da6f573e5d6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COMMENCE_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="tRank-3" mode="Opaque" x="215" y="0" width="100" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="3c358a6d-d7d7-4438-8829-8c20dd0332ac"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rank: " + $F{SUBSTANTIVE_RANK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="tName-4" mode="Opaque" x="0" y="0" width="200" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="4f97ffc4-cade-4eff-a209-3ed821bae572"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Appraisee: " + $F{NAME}+ " (" +$F{EMPLOYEE_NUMBER}+")"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement key="tStartDate-3" mode="Opaque" x="481" y="0" width="50" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="b7a90c46-ca61-4fdf-a665-5d4a185c0938"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{END_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="staticText-1" mode="Opaque" x="462" y="0" width="18" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="7410893f-807c-4002-bbcc-108192dcf7f3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None" markup="styled">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style size='10'>to</style>"]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="staticText-2" mode="Opaque" x="366" y="0" width="41" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="25c3c4c2-61ff-4872-823d-3640f59ec710"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None" markup="styled">
+					<font fontName="Times New Roman" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style size='10'>Period: </style>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

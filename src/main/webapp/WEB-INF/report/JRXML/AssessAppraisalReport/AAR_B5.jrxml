@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2022-06-02T11:38:42 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AAR_B5" pageWidth="522" pageHeight="751" columnWidth="522" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5484eb7a-8cf3-48e3-9f38-e7213fd57317">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.143588810000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="ReportDesc" fontName="Times New Roman" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<style name="ReportTitle" fontName="Times New Roman" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<parameter name="ReportID" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("100")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("C:\\iReport\\reports\\AssessAppraisalReport\\")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT REPLACE(C.WORK_WELL, utl_raw.cast_to_varchar2('F48FBFBD')) as WORK_WELL,
+--20240923 Remove chr(255) from the database value
+--chr(255) as WORK_WELL_SPACE,
+' ' as WORK_WELL_SPACE,
+--End 20240923 Remove chr(255) from the database value
+REPLACE(C.OVERALL_PERFORMANCE, utl_raw.cast_to_varchar2('F48FBFBD')) as OVERALL_PERFORMANCE,
+--20240923 Remove chr(255) from the database value
+--chr(255) as OVERALL_PERFORMANCE_SPACE,
+' ' as OVERALL_PERFORMANCE_SPACE,
+--End 20240923 Remove chr(255) from the database value
+C.PERFORMANCE_BONUS_CO,
+C.SALARY_ADJUSTMENT_CO, C.COUNTER_POTENTIAL, C.ASSE_CO_NAME,
+C.ASSE_CO_RANK, C.ASSE_CO_DATE, C.ASSE_CO_TEL
+        , lengthb(C.WORK_WELL) - length(C.WORK_WELL) as WORK_WELL_LEN
+        , lengthb(C.OVERALL_PERFORMANCE) - length(C.OVERALL_PERFORMANCE) as OVERALL_PERFORMANCE_LEN
+FROM HA_HR_EA_CONTRACT C
+WHERE C.REPORT_ID = $P{ReportID}]]>
+	</queryString>
+	<field name="WORK_WELL" class="java.lang.String"/>
+	<field name="WORK_WELL_SPACE" class="java.lang.String"/>
+	<field name="OVERALL_PERFORMANCE" class="java.lang.String"/>
+	<field name="OVERALL_PERFORMANCE_SPACE" class="java.lang.String"/>
+	<field name="PERFORMANCE_BONUS_CO" class="java.lang.String"/>
+	<field name="SALARY_ADJUSTMENT_CO" class="java.lang.String"/>
+	<field name="COUNTER_POTENTIAL" class="java.lang.String"/>
+	<field name="ASSE_CO_NAME" class="java.lang.String"/>
+	<field name="ASSE_CO_RANK" class="java.lang.String"/>
+	<field name="ASSE_CO_DATE" class="java.lang.String"/>
+	<field name="ASSE_CO_TEL" class="java.lang.String"/>
+	<field name="WORK_WELL_LEN" class="java.lang.Integer"/>
+	<field name="OVERALL_PERFORMANCE_LEN" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement key="txtPartB4Title-1" style="ReportTitle" positionType="Float" mode="Transparent" x="0" y="0" width="522" height="29" forecolor="#000000" backcolor="#FFFFFF" uuid="1ef4ba87-2a45-4ddc-807b-68729c733e9b"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font size="12"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Section  5      Countersigning Officer's Assessment
+<style pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H">第五欄          加簽人員的評核</style>]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="458" splitType="Stretch">
+			<staticText>
+				<reportElement key="txtOverallPerformance" style="ReportTitle" positionType="Float" mode="Transparent" x="0" y="199" width="522" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="be5c71f3-7ad4-429a-aaa3-c3add192c540"/>
+				<box bottomPadding="5" rightPadding="5">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font isBold="false" pdfFontName="Times-Roman"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(2) <style isBold="true" pdfFontName="Times-Bold">Overall Performance</style> <style size="10" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H">整體表現</style>
+]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="tOverallPerformance" positionType="Float" mode="Transparent" x="0" y="314" width="522" height="136" forecolor="#000000" backcolor="#FFFFFF" uuid="acf28cbd-2c9f-450b-aeb9-24b3485c92a7">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{OVERALL_PERFORMANCE}!=null)]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="5" leftPadding="5" bottomPadding="10" rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ( $F{OVERALL_PERFORMANCE_LEN}.intValue() > 0   ) ? $F{OVERALL_PERFORMANCE}.replaceAll("'","’").replaceAll("`","‘") : $F{OVERALL_PERFORMANCE} )  + $F{OVERALL_PERFORMANCE_SPACE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtWorkWell" style="ReportTitle" positionType="Float" mode="Transparent" x="0" y="0" width="525" height="42" forecolor="#000000" backcolor="#FFFFFF" uuid="6574c0f6-378a-402d-8f9d-359557adbec6"/>
+				<box topPadding="5" bottomPadding="5" rightPadding="5">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font isBold="false" pdfFontName="Times-Roman"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(1) <style size="10">Please indicate below how well do you know the work of the appraisee.</style>
+<style size="10" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H">       請略述你對受評人工作的認識。</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="tWorkWell" positionType="Float" mode="Transparent" x="0" y="41" width="522" height="136" forecolor="#000000" backcolor="#FFFFFF" uuid="25ac50d1-6f67-47d1-93e1-dc2a50530e82">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{WORK_WELL}!= null)]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="5" leftPadding="5" bottomPadding="10" rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(( $F{WORK_WELL_LEN}.intValue() > 0 )  ?  $F{WORK_WELL}.replaceAll("'","’").replaceAll("`","‘") : $F{WORK_WELL}  ) + $F{WORK_WELL_SPACE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="txtOverallPerformance-1" style="ReportTitle" positionType="Float" mode="Transparent" x="16" y="219" width="480" height="93" forecolor="#000000" backcolor="#FFFFFF" uuid="97150979-0ebb-4560-a620-700e98da0053"/>
+				<box bottomPadding="5" rightPadding="5">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="styled">
+					<font isBold="false" pdfFontName="Times-Roman"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Please give an assessment of the appraisee’s overall performance during the appraisal period. Comment on the appraisee's <style isBold="true" pdfFontName="Times-Bold">competencies, training and development needs, postability and potential. </style>If your assessment is significantly different from that of the Appraising Officer, please give reason(s).<style size="4">
+
+</style><style size="10" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H">請評核受評人於評核期內的整體表現，並評述受評人的才能、培訓及發展需要、是否適宜調配到其他職位，以及具備的潛能。如你的評核與評核人員的評核有重大差異，請列明原因。</style>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="tWorkWellBlank" positionType="Float" mode="Transparent" x="0" y="41" width="522" height="136" forecolor="#000000" backcolor="#FFFFFF" uuid="e47c53cd-2c12-4f43-9a8f-4252f12a6033">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{WORK_WELL}== null)]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="5" leftPadding="5" bottomPadding="10">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="tOverallPerformanceBlank" positionType="Float" mode="Transparent" x="0" y="314" width="522" height="136" forecolor="#000000" backcolor="#FFFFFF" uuid="ca766ffb-d559-41fc-83eb-596d19e1ce33">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{OVERALL_PERFORMANCE}==null)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2022-06-02T11:40:41 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AAR_B6" pageWidth="523" pageHeight="821" whenNoDataType="AllSectionsNoDetail" columnWidth="523" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="840314da-2a31-4352-bfdb-0c389ef6ab48">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="ReportDesc" fontName="Times New Roman" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<style name="ReportTitle" fontName="Times New Roman" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<parameter name="ReportID" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("350")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new String("C:\\iReport\\reports\\AssessAppraisalReport\\")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sr_aar_partb6_dn" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b6_part2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="sr_aar_b6_part3" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString>
+		<![CDATA[SELECT REPLACE(C.XXREVIEW_INTERVIEW, utl_raw.cast_to_varchar2('F48FBFBD')) as REVIEW_INTERVIEW,
+--20240923 Remove chr(255) from the database value		
+--chr(255) as REVIEW_INTERVIEW_SPACE
+' ' as REVIEW_INTERVIEW_SPACE
+--End 20240923 Remove chr(255) from the database value
+, LENGTHB(TO_CHAR(SUBSTR(C.XXREVIEW_INTERVIEW,1,1000))) - LENGTHB(TO_CHAR(SUBSTR(C.XXREVIEW_INTERVIEW,1,1000))) as REVIEW_INTERVIEW_LEN
+FROM HA_HR_EA_CONTRACT C
+WHERE C.REPORT_ID = $P{ReportID}]]>
+	</queryString>
+	<field name="REVIEW_INTERVIEW" class="java.lang.String"/>
+	<field name="REVIEW_INTERVIEW_SPACE" class="java.lang.String"/>
+	<field name="REVIEW_INTERVIEW_LEN" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="450" splitType="Stretch">
+			<staticText>
+				<reportElement key="txtPartB6Title" style="ReportTitle" positionType="Float" mode="Transparent" x="0" y="0" width="522" height="52" forecolor="#000000" backcolor="#FFFFFF" uuid="220e1c5a-58f4-4012-bdaa-a2310a54a5e3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font size="12"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Section  6      Performance Appraisal Interview <style isItalic="true" pdfFontName="Times-Italic">(To be completed by the Appraising Officer or the 
+                       Countersigning Officer who conducted the interview)</style><style size="4">
+
+</style><style pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H">第六欄          工作表現評核會見 (由負責進行會見的人員，即評核人員或加簽人員填寫)</style>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="txtPotentialAssessment" style="ReportDesc" positionType="Float" mode="Opaque" x="0" y="60" width="522" height="43" forecolor="#000000" backcolor="#FFFFFF" uuid="5cca5f50-ff7f-4b29-b944-2f6d5c18b8bc"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="styled">
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Please show the entire report to the appraisee before the interview.  A summary of the discussion, 
+including comments of the appraisee, should be recorded below.  
+<style size="10" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H">請讓受評人於會見前閱讀整份報告，並在下面記錄面談概要(包括受評人的意見)。</style>
+]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="txtReviewInterview" positionType="Float" isPrintRepeatedValues="false" mode="Opaque" x="0" y="111" width="523" height="331" forecolor="#000000" backcolor="#FFFFFF" uuid="284510e8-a527-45f0-9ae6-6eb3ef61eab2">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{REVIEW_INTERVIEW}!=null)]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="5" leftPadding="5" bottomPadding="5" rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( ($F{REVIEW_INTERVIEW_LEN}.intValue() > 0) ? $F{REVIEW_INTERVIEW}.replaceAll("'","’").replaceAll("`","‘") : $F{REVIEW_INTERVIEW} ) + $F{REVIEW_INTERVIEW_SPACE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="tReviewInterviewBlank" positionType="Float" mode="Transparent" x="0" y="111" width="523" height="331" forecolor="#000000" backcolor="#FFFFFF" uuid="957b112d-d78f-4b8f-b238-92e706dce8c5">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{REVIEW_INTERVIEW}==null)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="細明體" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="MSung-Light" pdfEncoding="UniCNS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="73" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement key="Part2-SubReport" positionType="Float" mode="Opaque" x="0" y="17" width="523" height="22" forecolor="#000000" backcolor="#FFFFFF" uuid="dd0cef3c-cbae-4a00-bba5-c204aeff793f"/>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="sr_aar_partb6_dn">
+					<subreportParameterExpression><![CDATA[$P{sr_aar_partb6_dn}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b6_part2}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement key="Part3-SubReport" positionType="Float" mode="Opaque" x="0" y="51" width="523" height="22" forecolor="#000000" backcolor="#FFFFFF" uuid="32920b2b-1c9b-441d-baee-d1e7a899daac"/>
+				<subreportParameter name="ReportID">
+					<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ReportDirectory">
+					<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{sr_aar_b6_part3}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,22 @@
+<%@ tag language="java" pageEncoding="UTF-8"%>
+<%@ include file="/common/taglibs.jsp"%>
+<%@ taglib tagdir="/WEB-INF/tags/common" prefix="common"%>
+
+<div id="leftMenu">
+	<ul class="mainmenu">
+		<c:choose>
+			<c:when test="${not empty currentModule && cihIndexPage != 'Y'}">
+				<common:cihMainMenu currentModule="${currentModule}"/>
+			</c:when>
+			<c:when test="${cihIndexPage == 'Y'}">
+				<common:cihPreMenu />
+			</c:when>
+			<c:when test="${isActiveAccountPage == 'Y'}">
+				<common:activeAccountMenu />
+			</c:when>
+			<c:otherwise>
+				<common:supportMenu/>
+			</c:otherwise>
+		</c:choose>
+	</ul>
+</div>

@@ -1,0 +1,72 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.3.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- scan & transactions, etc. -->
+	<context:component-scan
+		base-package="com.hkha.ea.*" />
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
+	<!-- ========================= -->
+	<!-- 1) JSP VIEW RESOLVER -->
+	<!-- ========================= -->
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- where your JSPs live (e.g. /WEB-INF/jsp/common/*.jsp and /WEB-INF/jsp/decorators/*.jsp) -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<!-- highest precedence -->
+		<property name="order" value="0" />
+	</bean>
+
+	<!-- ========================= -->
+	<!-- 2) THYMELEAF CONFIG -->
+	<!-- ========================= -->
+	<!-- a) template resolver for HTML files -->
+	<bean id="templateResolver"
+		class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML" />
+		<property name="characterEncoding" value="UTF-8" />
+		<property name="cacheable" value="false" />
+	</bean>
+
+	<!-- b) template engine with layout dialect -->
+	<bean id="templateEngine"
+		class="org.thymeleaf.spring6.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+		<property name="enableSpringELCompiler" value="true" />
+		<property name="additionalDialects">
+			<set>
+				<bean
+					class="nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect" />
+			</set>
+		</property>
+	</bean>
+
+	<!-- c) Thymeleaf view resolver for .html -->
+	<bean id="thymeleafViewResolver"
+		class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<property name="characterEncoding" value="UTF-8" />
+		<!-- after JSP resolver -->
+		<property name="order" value="1" />
+		<!-- only handle .html views -->
+		<property name="viewNames">
+			<list>
+				<value>*.html</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,213 @@
+
+<!-- ONE STEP TO INSTALL BROWSER VERSION:
+
+   1.  Paste the coding into the BODY of your HTML document  -->
+
+<!-- STEP ONE: Copy this code into the BODY of your HTML document  -->
+<BODY scroll=yes>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+//<!-- Begin
+
+//var host ="e-app-prd.housing.hksarg";
+//var port ="9483";
+
+var full = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+
+function getCookieVal (offset) {
+	var endstr = document.cookie.indexOf (";", offset);
+	if (endstr == -1)
+		endstr = document.cookie.length;
+	return unescape(document.cookie.substring(offset, endstr));
+}
+
+function GetCookie (name) {
+	var arg = name + "=";
+	var alen = arg.length;
+	var clen = document.cookie.length;
+	var i = 0;
+	while (i < clen) {
+		var j = i + alen;
+		if (document.cookie.substring(i, j) == arg)
+			return getCookieVal (j);
+		i = document.cookie.indexOf(" ", i) + 1;
+		if (i == 0) break; 
+	}
+	return null;
+}  
+
+function SetCookie (name, value) {
+	var argv = SetCookie.arguments;
+	var argc = SetCookie.arguments.length;
+	var expires = new Date();
+	expires.setYear(expires.getYear() + 5);
+//	var expires = (argc > 2) ? argv[2] : null;
+	var path = (argc > 3) ? argv[3] : null;
+	var domain = (argc > 4) ? argv[4] : null;
+	var secure = (argc > 5) ? argv[5] : false;
+	document.cookie = name + "=" + escape (value) +
+	((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+	((path == null) ? "" : ("; path=" + path)) +
+	((domain == null) ? "" : ("; domain=" + domain)) +
+	((secure == true) ? "; secure" : "");
+}
+
+
+function checkInstalled() {
+	var largeExpDate = new Date ();
+	largeExpDate.setTime(largeExpDate.getTime() + (365 * 24 * 3600 * 1000));
+	var pathname = location.pathname;	
+	//var vos = getOS();
+	
+
+	//Check whether the patch is installed or not
+	if(GetCookie("installedInd") == "Y") {
+                //document.write("Installed");
+		return ("ok");
+	}
+	else {
+		//If not installed, check whether the OS is WinXP
+		//Edit by PCCW on 09/09/2008 for Window Vista
+		//Edited on 20171019 for windows 8 and 10
+		
+		//document.write("OS:" + vos + "<p>");		
+		//Edit by PCCW on 15-Jun-2020  Add Win 3.1 for Edge
+		if ((getOS() == "Win 3.1")||(getOS() == "Windows XP")||(getOS() == "Windows Vista")||getOS() == "Windows 7"||getOS() == "Windows 8"||getOS() == "Windows 8.1"||getOS() == "Windows 10") {
+                        //document.write("Ok, no need to install! <p>");
+			return("ok");
+		}
+		else {
+			if(checkBrowser() == "ok") {
+				//Edit by PCCW on 15-Jun-2020 
+				//window.open("confirm.htm","","resizable=no,toolbar=NO,menubar=no,location=no,status=NO;");
+				return("notok");
+			    //Edit by PCCW on 15-Jun-2020 
+
+			}
+			else
+				return("notok");
+			//return("ok");
+		}
+	}
+}
+
+function close_now() {
+	window.opener=true
+	self.close(); 
+}
+
+
+function getOS() 
+{
+	//alert("" + navigator.appName);
+	
+	//Edit by PCCW on 02/11/2021 Remove the OS checking for obsolete OS for Chrome version 95 
+	/*
+	if(navigator.appVersion.indexOf("16") != -1) {
+		return("Win 3.1");
+	}
+	else if(navigator.appVersion.indexOf("95") != -1) {
+		return("Windows 95");
+	}
+	else if(navigator.appVersion.indexOf("98") != -1) {
+		return("Windows 98");	
+	}
+	else if(navigator.appVersion.indexOf("SunOS") != -1) {
+	*/
+	//end Edit by PCCW on 02/11/2021 Remove the OS checking for obsolete OS for Chrome version 95 
+	if(navigator.appVersion.indexOf("SunOS") != -1) {
+		return("Sun");
+	}
+	else if(navigator.appVersion.indexOf("Linux") != -1) {
+		return("Linux");
+	}
+	else if(navigator.appVersion.indexOf("Mac") != -1) {
+		return("Macintosh");
+	}
+	else if(navigator.appVersion.indexOf("Windows NT 5.0") != -1) {
+		return("Windows 2000");
+	}
+	else if(navigator.appVersion.indexOf("Windows NT 5.1") != -1) {
+		return("Windows XP");
+	}
+	else if(navigator.appVersion.indexOf("Windows NT 6.1") != -1) {
+		return("Windows 7");
+	}
+	//edited on 20171019 check windows 8 and 10
+	else if(navigator.appVersion.indexOf("Windows NT 6.2") != -1) {
+		return("Windows 8");
+	}
+	else if(navigator.appVersion.indexOf("Windows NT 6.3") != -1) {
+		return("Windows 8.1");
+	}
+	//end edited on 20171019 check windows 8 and 10
+	//Edit by PCCW on 02/11/2021 Remove the OS checking for obsolete OS for Chrome version 95 
+	/*
+	else if(navigator.appVersion.indexOf("NT") != -1) {
+		return("Windows NT");
+	}
+	*/
+	//end Edit by PCCW on 02/11/2021 Remove the OS checking for obsolete OS for Chrome version 95 
+	//Edit by PCCW on 09/09/2008 for Window Vista
+	else if(navigator.appVersion.indexOf("Windows NT 6.0") != -1) {
+		return("Windows Vista");
+	}
+	else if(navigator.appVersion.indexOf("Windows NT 10.0") != -1) {
+		return("Windows 10");
+	}
+	else {
+		return("Hmmmmmmmmmmmm?");
+	}
+}
+
+function checkBrowser()
+{
+	var version=/MSIE \d+.\d+/;
+	var ver_no;
+	var largeExpDate = new Date ();
+	largeExpDate.setTime(largeExpDate.getTime() + (365 * 24 * 3600 * 1000));
+	var pathname = location.pathname;
+	
+	ver_no=navigator.appVersion.match(version);
+	//document.write("Version : " + ver_no + "<p>");
+	//Edit by PCCW on 09/09/2008 for Window Vista
+	if ((ver_no == "MSIE 6.0")||(ver_no == "MSIE 7.0"))
+		return("ok");
+	else {
+		//Remove by PCCW on 16-Jun-2020 for Microsoft Edge
+		//document.write("You are using an incompatible broswer, please contact helpdesk at 2624 6626! <p>");
+		//return("notok");
+		return("ok");
+	}
+}
+
+
+
+
+//<!-- Begin
+    var proxyStr = window.location.pathname;
+    var proxyPos = proxyStr.indexOf("/ea/");
+    if (proxyPos > -1){
+        proxyStr = proxyStr.substr(0,proxyPos);
+    } else {
+        proxyStr = "";
+    }
+
+//	document.write(GetCookie("installedInd"));
+	var str = new String(window.location);
+	//str = "https://"+host+":"+port+"/ea/Jsp/common/Login.jsp" + str.substr(str.indexOf("?",1),str.length);
+    var strpos = str.indexOf("?",1);
+    if (strpos > -1){
+        str = full + proxyStr + "/ea/Jsp/common/Login.jsp" + str.substr(strpos,str.length);
+    } else {
+        str = full + proxyStr + "/ea/Jsp/common/Login.jsp"
+    }
+    
+	if (checkInstalled() == "ok") {
+		location.href=str;
+	}
+// End -->
+</SCRIPT>
+
+<!-- Script Size:  0.50 KB  -->

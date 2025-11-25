@@ -1,0 +1,634 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="com.hkha.ea.common.Constants" contentType="text/html;charset=UTF-8"%>
+<%@ include file="/common/taglibs.jsp"%>
+<%@ taglib prefix="assess" tagdir="/WEB-INF/tags/assess/"%>
+<%@ taglib uri="/WEB-INF/tld/secPage.tld" prefix="secPage"%>
+<html>
+<head>
+<script>
+$(function() {
+	$( "#tabContainer" ).tabs();
+	initDialog();
+	bLoadTag();
+	returnResults();
+	//added on 20171009
+	remindMsg();
+});
+function returnResults(){
+	var saveFlag=$("#actionFlag").val();
+	
+	if("success"==saveFlag){
+		$("#msgR").html("Saved successfully.");
+		$("#msgRDialog").dialog("open");
+	}else if("fail"==saveFlag){
+		$("#msgR").html("Save Fail!");
+		$("#msgRDialog").dialog("open");
+	}else if("sendSuccess"==saveFlag){
+		$("#msgResultSend").html("The report has been sent to responsible officer successfully.");
+		$("#sendResultDialog").dialog("open");
+	}else if("sendFail"==saveFlag){
+		 $("#msgResultSend").html("Submit is not successful. Please note the following errors.");
+		$("#sendResultDialog").dialog("open");
+	}
+}
+function btnInit(currentPage){
+	var pages='${assessAppraisalDTO.pages}'; 
+	var role = '${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}';
+	
+	 $(".btnBars").empty();
+	if(currentPage==0){			
+		$(".btnBars").append("<input type='button' class='btnNext' value='Next' onclick='nextClick("+(Number(currentPage)+Number(1))+");'/>");
+		$(".btnBars").append("<input type='button' class='btnSave' value='Save' onclick='saveClick("+Number(currentPage)+");'/>");	
+	}else if(currentPage==pages){
+		//$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+(Number(currentPage)-Number(1)) +");'/>");				
+		if(role=="AP"){
+			$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+Number(1) +");'/>");		
+		}else if(role=="AO"){
+			$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+Number(5) +");'/>");
+		}else if(role=="CO"){
+			$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+Number(6) +");'/>");
+		}else if(role=="IO"){
+			$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+Number(7) +");'/>");
+		}else{
+			$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+(Number(currentPage)-Number(1)) +");'/>");	
+		}
+		$(".btnBars").append("<input type='button' class='btnSave' value='Save' onclick='saveClick("+ Number(currentPage) +");'/>");
+		$(".btnBars").append("<input type='button' class='btnPrint' value='Print' onclick='printClick();'/>");
+		$(".btnBars").append("<input type='button' class='btnSubmit' value='Send' onclick='sendClick();'/>");	
+	}else{
+		//$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+ (Number(currentPage)-Number(1)) +");'/>");
+		//$(".btnBars").append("<input type='button' class='btnNext' value='Next' onclick='nextClick("+ (Number(currentPage)+Number(1)) +");'/>");
+		if(role=="RO"){
+			if(currentPage==9){
+				$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+ (Number(currentPage)-Number(2)) +");'/>");
+			}else{
+				$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+ (Number(currentPage)-Number(1)) +");'/>");
+			}
+		}else{
+			$(".btnBars").append("<input type='button' class='btnBack' value='Back' onclick='backClick("+ (Number(currentPage)-Number(1)) +");'/>");
+		}
+		if((role=="AP"&&currentPage==1) || (role=="AO"&&currentPage==5) || (role=="CO"&&currentPage==6) || (role=="IO"&&currentPage==7)){
+			$(".btnBars").append("<input type='button' class='btnNext' value='Next' onclick='nextClick("+ Number(pages) +");'/>");
+		}else if(role=="RO"&&currentPage==7){
+			$(".btnBars").append("<input type='button' class='btnNext' value='Next' onclick='nextClick("+ (Number(currentPage)+Number(2)) +");'/>");
+		}else{
+			$(".btnBars").append("<input type='button' class='btnNext' value='Next' onclick='nextClick("+ (Number(currentPage)+Number(1)) +");'/>");
+		}
+		
+		$(".btnBars").append("<input type='button' class='btnSave' value='Save' onclick='saveClick("+ Number(currentPage) +");'/>");
+	}
+	
+}
+
+function bLoadTag(){
+	//edited on 20171011 send report to appraisee
+	var curp=$("#currentPage").val();
+	var pages='${assessAppraisalDTO.pages}'; 
+	var role = '${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}';
+	var seqNo = '${assessAppraisalDTO.partAInfoList.get(0).seqNo}';
+
+	if (role=='AO' && seqNo==0){
+		curp = pages;
+	}
+	
+	$("#tabContainer").tabs( "option", "active", curp );
+	btnInit(curp);	
+	//end edited on 20171011
+}
+function nextClick(page){	
+	$("#actionFlag").val("");
+	$("#currentPage").val(page);
+	$("#tabContainer").tabs( "option", "active", page );
+	btnInit($("#currentPage").val());
+	
+}
+function backClick(page){
+	$("#actionFlag").val("");
+	$("#tabContainer").tabs( "option", "active", page );
+	$("#currentPage").val(page);
+	btnInit($("#currentPage").val());
+	
+}
+function pageTabClick(){
+	var active = $("#tabContainer").tabs( "option", "active" );
+	$("#currentPage").val(active);
+	btnInit($("#currentPage").val());
+	
+}
+function saveClick(page){
+	
+	$("#msgR").html("Save record only. It will not send the appraisal to next level!");
+	$("#msgRDialog").dialog("open");
+	
+	$("#actionFlag").val("save");
+	$("#currentPage").val(page);
+	
+	
+}
+function sendClick(page){	
+	
+	$("#msgRSend").html("Have you printed a copy before submitting?  As the report cannot be accessed anymore after sending, you may press \'Cancel\' to stay on the same page or press \'Confirm\' to proceed with the send function.");
+	$("#sendRDialog").dialog({'height': 'auto'});
+	$("#sendRDialog").dialog("open");	
+	$("#currentPage").val(page);
+
+	
+}
+function printClick(page){	
+	var rptId=$("#reportId").val();
+	var role=$("#currentUserRoleStatus").val();
+	window.open(getJunction('/ea/')+"${ctx}/common/printReport.do?rptId="+rptId+"&role="+role);	
+}
+function backToListBtnClick(){
+	$("#msgBtl").html("Back to list without saving/sending?");
+	$("#btlDialog").dialog("open");
+}
+function initDialog(){
+	$("#msgRDialog").dialog({
+		autoOpen: false,
+		height: 150,
+	      width: 350,
+	      modal: true,
+	      buttons: {
+	          "OK": function() {
+	        	  if("save"==$("#actionFlag").val()){
+	        		//set radio button not dim edited on 20170222
+	        			if("N"==$("#bonusDimmedB3").val()){
+	        				$(".aoBonusB3").attr("disabled",false);
+	        			}
+	        			if("N"==$("#salaryDimmedB3").val()){
+	        				$(".aoSalaryB3").attr("disabled",false);
+	        			}
+	        			if("N"==$("#bonusDimmedB5").val()){
+	        				$(".coBonusB5").attr("disabled",false);
+	        			}
+	        			if("N"==$("#salaryDimmedB5").val()){
+	        				$(".coSalaryB5").attr("disabled",false);
+	        			}
+	        			
+	        			if("N"==$("#bonusDimmedB7").val()){
+	        				$(".eoBonusB7").attr("disabled",false);
+	        			}
+	        			if("N"==$("#bonusDimmedB8").val()){
+	        				$(".roBonusB8").attr("disabled",false);
+	        			}
+	        			//added on 20180115 remove disable before save 
+	        			$('form').submit(function(e) {
+	        			    $(':disabled').each(function(e) {
+	        			        $(this).removeAttr('disabled');
+	        			    })
+	        			});
+	        			//end added on 20180115 remove disable before save
+	        		//end set radio button not dim edited on 20170222  
+	        		  $("#pageForm").submit();
+	        	  }
+	        	 
+	        	 $("#actionFlag").val("");
+	       		 $( this ).dialog( "close" );
+	          }         
+	}});
+	
+	$("#sendRDialog").dialog({
+		autoOpen: false,
+		height: 150,
+	      width: 350,
+	      modal: true,
+	      buttons: {
+	          "Confirm": function() {
+	        	  $("#actionFlag").val("send");    	 
+	       		$( this ).dialog( "close" );
+	       		
+	       	//set radio button not dim edited on 20170222
+	       		if("N"==$("#bonusDimmedB3").val()){
+	       			$(".aoBonusB3").attr("disabled",false);
+	       		}
+	       		if("N"==$("#salaryDimmedB3").val()){
+	       			$(".aoSalaryB3").attr("disabled",false);
+	       		}
+	       		if("N"==$("#bonusDimmedB5").val()){
+	       			$(".coBonusB5").attr("disabled",false);
+	       		}
+	       		if("N"==$("#salaryDimmedB5").val()){
+	       			$(".coSalaryB5").attr("disabled",false);
+	       		}
+	       		//added on 20180115 remove disable before send 
+    			$('form').submit(function(e) {
+    			    $(':disabled').each(function(e) {
+    			        $(this).removeAttr('disabled');
+    			    })
+    			});
+    			//end added on 20180115 remove disable before send
+	       	//end set radio button not dim edited on 20170222
+	       		 $("#pageForm").submit();
+	          },
+	          "Cancel":function(){
+	        	  $( this ).dialog( "close" );
+	        	  $("#actionFlag").val("");
+	          }
+	}});
+	$("#sendResultDialog").dialog({
+		autoOpen: false,
+		height: 150,
+	      width: 350,
+	      modal: true,
+	      buttons: {
+	          "OK": function() {
+	        	  if("sendSuccess"==$("#actionFlag").val()){
+	        		$("#actionFlag").val("backToList");
+		        	$("#pageForm").submit();
+	        	  }else{
+	        	 	$("#actionFlag").val("");
+	        	  	btnInit($("#currentPage").val());	
+	        	  }
+	       		$( this ).dialog( "close" );
+	          }         
+	}});
+	
+	$("#btlDialog").dialog({
+		autoOpen: false,
+		height: 150,
+	      width: 350,
+	      modal: true,
+	      buttons: {
+	          "OK": function() {
+	        	  $("#actionFlag").val("backToList");
+	        	  $("#pageForm").submit();
+	       		  $( this ).dialog( "close" );
+	          },
+	          "Cancel":function(){
+	        	  $( this ).dialog( "close" );
+	        	  $("#actionFlag").val("");
+	          }
+	}});
+	
+}
+//added on 20171009 for send report to appraisee
+function remindMsg(){
+	var role = '${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}';
+	var seqNo = '${assessAppraisalDTO.partAInfoList.get(0).seqNo}';
+	var saveFlag=$("#actionFlag").val();
+	if ((role=='AO' && seqNo == 0) && saveFlag == ''){
+		window.onload = function(){
+			alert('Please press the "send" button to send the report to appraisee for checking the Personal Information and completion of Part A on Key Objectives.');
+        }
+	}
+	//added on 20180108 for alert msg of cc list empty
+	var saveFlag=$("#actionFlag").val();
+	console.log('saveflag: '+saveFlag);
+	var cclist = '${assessAppraisalDTO.getPartB4Info().getCcInfoList().size()}';
+	if (cclist == 0 && saveFlag == ''){
+		window.onload = function(){
+			alert('Core Competencies List is empty. Please contact IT department.');
+        }
+	}
+	//end added on 20180108
+}
+//end added on 20171009
+</script>
+</head>
+<body>
+<!--
+#Spring5Upgrade #OpenJDK11 #Java11
+Following part was created to use modelAttribute on 20/11/2021
+
+Due to the Java version was upgraded from OpenJDK 8 to OpenJDK 11, 
+	the Spring framework was required to upgrade from version 4 to version 5.
+
+The commandName tag is deprecated since Spring framework 4.3, the modelAttribute tag replaces it in Spring 5.
+
+Modified on 20/10/2021
+-->
+<form:form id="pageForm" action="${ctx}/assess/AssessAppraisalReportAction.do"  modelAttribute="assessAppraisalDTO" method="post">
+<!-- edited on 20170228 -->
+<input type="hidden" id="isAORoleChecked" value="${isAORoleChecked}" />
+<input type="hidden" id="isCORoleChecked" value="${isCORoleChecked}" />
+<input type="hidden" id="isIORoleChecked" value="${isIORoleChecked}" />
+<input type="hidden" id="isEORoleChecked" value="${isEORoleChecked}" />
+<input type="hidden" id="isRORoleChecked" value="${isRORoleChecked}" />
+<br/>
+<table width="100%" cellpadding="5">
+	<tr>
+		<td align="right" class="btnBars">
+		
+		</td>
+	</tr>
+</table>
+
+<!--  <secPage:buttonBar role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" currentPage="${assessAppraisalDTO.currentPage}" reportType="C" /> -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="middle">
+			<table width="100%" border="0" cellpadding="5" cellspacing="0">
+				<tr>
+					<td>
+						<!--  <input name="information" text="" visible="false" font="InformationFont"/>
+						<salmon:validator name="errorMessage" visible="false" breaksafter="2"  allowmultipleerrors="true" focuslinks="true" rulejs="false"></salmon:validator>-->
+					<!--
+					#Spring5Upgrade #OpenJDK11 #Java11
+					Following part was created to use modelAttribute on 20/11/2021
+	        
+					Due to the Java version was upgraded from OpenJDK 8 to OpenJDK 11, 
+						the Spring framework was required to upgrade from version 4 to version 5.
+	        
+					The commandName tag is deprecated since Spring framework 4.3, the modelAttribute tag replaces it in Spring 5.
+	        
+					Modified on 20/10/2021
+					-->
+						<common:mvcErrorTable modelAttribute="assessAppraisalDTO"/>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<div id="msgRDialog" title="HA-EA">
+	<p><span id="msgR"></span></p>
+</div>
+<div id="sendRDialog" title="HA-EA">
+	<p><span id="msgRSend"></span></p>
+</div>
+<div id="sendResultDialog" title="HA-EA">
+	<p><span id="msgResultSend"></span></p>
+</div>
+<div id="btlDialog" title="HA-EA">
+	<p><span id="msgBtl"></span></p>
+</div>
+<!--  Appraisee Info -->
+<assess:appraiseeInfo dto="appraiseeInfo"/>
+<br/>
+<div id="tabContainer">	
+   <ul>
+   <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="PI" reportType="C" roleChecked="PIRoleChecked">
+     <li id="piPage" onclick="pageTabClick();"><a href="#PI" >Personal Info</a></li>
+     </secPage:dtreeMenu>
+     <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="A" reportType="C" roleChecked="ARoleChecked">
+     <li id="partAPage" onclick="pageTabClick();"><a href="#partA" >Part A</a></li>
+     </secPage:dtreeMenu>
+     <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B1" reportType="C" roleChecked="B1RoleChecked">
+     <c:choose>
+    	<c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus!='AP'}">
+			<li id="partB1Page" onclick="pageTabClick();"><a href="#partB1" >Part B-1</a></li> 
+   		</c:when>    
+    	<c:otherwise>
+        	<li id="partB1Page" class="inactiveLink" ><a href="#partB1"><FONT color="grey">Part B-1</FONT></a></li>
+    	</c:otherwise>
+	 </c:choose>
+	 <!-- <li id="partB1Page" onclick="pageTabClick();"><a href="#partB1" >Part B-1</a></li> --> 
+     </secPage:dtreeMenu>
+     <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B2" reportType="C" roleChecked="B2RoleChecked">   
+     <!-- <li id="partB2Page" onclick="pageTabClick();"><a href="#partB2" >Part B-2</a></li> -->
+     <c:choose>
+    	<c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus!='AP'}"> 
+			<li id="partB2Page" onclick="pageTabClick();"><a href="#partB2" >Part B-2</a></li>
+   		</c:when>    
+    	<c:otherwise>
+        	<li id="partB2Page" class="inactiveLink" ><a href="#partB2"><FONT color="grey">Part B-2</FONT></a></li>
+    	</c:otherwise>
+	 </c:choose>
+     </secPage:dtreeMenu>
+     <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B3" reportType="C" roleChecked="B3RoleChecked">
+     <!-- <li id="partB3Page" onclick="pageTabClick();"><a href="#partB3" >Part B-3</a></li> -->
+     
+     <c:choose>
+    	<c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus !='AP'}"> 
+			<li id="partB3Page" onclick="pageTabClick();"><a href="#partB3" >Part B-3</a></li>
+   		</c:when>    
+    	<c:otherwise>
+        	<li id="partB3Page" class="inactiveLink" ><a href="#partB3"><FONT color="grey">Part B-3</FONT></a></li>
+    	</c:otherwise>
+	 </c:choose>
+     
+     </secPage:dtreeMenu>
+     <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B4" reportType="C" roleChecked="B4RoleChecked">
+     <!-- <li id="partB4Page" onclick="pageTabClick();"><a href="#partB4" >Part B-4</a></li> -->
+     
+     <c:choose>
+    	<c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus !='AP'}"> 
+			<li id="partB4Page" onclick="pageTabClick();"><a href="#partB4" >Part B-4</a></li>
+   		</c:when>    
+    	<c:otherwise>
+        	<li id="partB4Page" class="inactiveLink" ><a href="#partB4"><FONT color="grey">Part B-4</FONT></a></li>
+    	</c:otherwise>
+	 </c:choose>
+     
+     </secPage:dtreeMenu>
+     <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B5" reportType="C" roleChecked="B5RoleChecked">
+     <!-- <li id="partB5Page" onclick="pageTabClick();"><a href="#partB5" >Part B-5</a></li>  -->
+     <!--  -->
+     <c:choose>
+    	<c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'CO' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'IO' 
+    			or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'RO' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'SU' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'GM'}">
+			<li id="partB5Page" onclick="pageTabClick();"><a href="#partB5" >Part B-5</a></li>
+   		</c:when>    
+    	<c:otherwise>
+        	<li id="partB5Page" class="inactiveLink" ><a href="#partB5"><FONT color="grey">Part B-5</FONT></a></li>
+    	</c:otherwise>
+	 </c:choose>
+     </secPage:dtreeMenu>
+     <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B6" reportType="C" roleChecked="B6RoleChecked">
+     <!-- <li id="partB6Page" onclick="pageTabClick();"><a href="#partB6" >Part B-6</a></li> -->
+       <c:choose>
+    	<c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'IO' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'RO' 
+    			or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'SU' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'GM'}">
+			<li id="partB6Page" onclick="pageTabClick();"><a href="#partB6" >Part B-6</a></li>
+   		</c:when>    
+    	<c:otherwise>
+        	<li id="partB6Page" class="inactiveLink" ><a href="#partB6"><FONT color="grey">Part B-6</FONT></a></li>
+    	</c:otherwise>
+	 </c:choose>
+     </secPage:dtreeMenu>
+     <!-- edited on 20170228 -->
+     <c:choose>
+     	<c:when test="${isEORoleChecked}">
+     		 <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B7" reportType="C" roleChecked="B7RoleChecked">
+      		  <c:choose>
+    		   <c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'SU' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'GM'}">
+					<li id="partB7Page" onclick="pageTabClick();"><a href="#partB7" >Part B-7</a></li>
+   			   </c:when>    
+    		   <c:otherwise>
+        			<li id="partB7Page" class="inactiveLink" ><a href="#partB7"><FONT color="grey">Part B-7</FONT></a></li>
+    		   </c:otherwise>
+	 	      </c:choose> 
+             </secPage:dtreeMenu>
+             
+             <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B8" reportType="C" roleChecked="B8RoleChecked">
+      		  <c:choose>
+    		   <c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'RO' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'SU' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'GM'}">
+					<li id="partB8Page" onclick="pageTabClick();"><a href="#partB8" >Part B-8</a></li>
+   			   </c:when>    
+    		   <c:otherwise>
+        			<li id="partB8Page" class="inactiveLink" ><a href="#partB8"><FONT color="grey">Part B-8</FONT></a></li>
+    		   </c:otherwise>
+	 	      </c:choose> 
+     		 </secPage:dtreeMenu>
+             
+     	</c:when>
+     	<c:otherwise>
+     		 <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B7" reportType="C" roleChecked="B7RoleNotChecked">
+      		  <c:choose>
+    		   <c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'SU' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'GM'}">
+					<li id="partB7Page" onclick="pageTabClick();"><a href="#partB7" >Part B-7</a></li>
+   			   </c:when>    
+    		   <c:otherwise>
+        			<li id="partB7Page" class="inactiveLink" ><a href="#partB7"><FONT color="grey">Part B-7</FONT></a></li>
+    		   </c:otherwise>
+	 	      </c:choose> 
+             </secPage:dtreeMenu>
+     	
+     		<secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B8" reportType="C" roleChecked="B8RoleChecked">
+      		  <c:choose>
+    		   <c:when test="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'RO' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'SU' or assessAppraisalDTO.reportUserRole.currentUserRoleStatus == 'GM'}">
+					<li id="partB8Page" onclick="pageTabClick();"><a href="#partB8" >Part B-7</a></li>
+   			   </c:when>    
+    		   <c:otherwise>
+        			<li id="partB8Page" class="inactiveLink" ><a href="#partB8"><FONT color="grey">Part B-7</FONT></a></li>
+    		   </c:otherwise>
+	 	      </c:choose> 
+     		 </secPage:dtreeMenu>
+     	</c:otherwise>
+     </c:choose>
+     <!-- end edited on 20170228 -->
+     
+     <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="PS" reportType="C" roleChecked="PSRoleChecked">
+     <li id="printSubmitPage" onclick="pageTabClick();"><a href="#printSubmit" >Print Submit</a></li>
+     </secPage:dtreeMenu>
+   </ul> 
+   
+    <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="PI" reportType="C" roleChecked="PIRoleChecked"> 
+   <div id="PI">
+    <!-- Personal Info -->
+	<assess:personalInfo dto="${assessAppraisalDTO}"></assess:personalInfo> 
+  </div>
+  </secPage:dtreeMenu>
+  
+   <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="A" reportType="C" roleChecked="ARoleChecked">
+  <div id="partA">
+  	 <!-- Part A Info -->
+  	 
+  	<assess:partAInfo dto="${assessAppraisalDTO}" id="PA"/>
+  	<assess:signatureInfo dto="signatureInfoA" officerName="Name of Appraising Officer"/>
+  </div>
+  </secPage:dtreeMenu>
+  
+  <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B1" reportType="C" roleChecked="B1RoleChecked">
+  <div id="partB1">	
+  	 <!-- Part B1 Info -->
+  	<assess:partB1Info dto="${assessAppraisalDTO}" id="PB"/>
+  </div>
+  </secPage:dtreeMenu>
+  
+  <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B2" reportType="C" roleChecked="B2RoleChecked">   
+   <div id="partB2">
+    <assess:partB2Info dto="${assessAppraisalDTO}" />
+  </div>
+  </secPage:dtreeMenu>
+  
+   <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B3" reportType="C" roleChecked="B3RoleChecked">
+    <div id="partB3">
+    <assess:partB3Info dto="${assessAppraisalDTO}" />
+  </div>
+  </secPage:dtreeMenu>
+  
+    <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B4" reportType="C" roleChecked="B4RoleChecked">
+    <div id="partB4">
+    <assess:partB4Info dto="${assessAppraisalDTO}" />
+    <assess:signatureInfoB dto="signatureInfoB4" officerLabel="Name of Appraising Officer"/>
+  </div>
+  </secPage:dtreeMenu>
+  
+    <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B5" reportType="C" roleChecked="B5RoleChecked">
+    <div id="partB5">   
+     		<assess:partB5Info dto="${assessAppraisalDTO}" />
+     		<assess:signatureInfoB dto="signatureInfoB5" officerLabel="Name of Countersigning Officer"/>
+ 	</div>
+  	</secPage:dtreeMenu>
+  
+   <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B6" reportType="C" roleChecked="B6RoleChecked">
+    <div id="partB6">
+    <assess:partB6Info dto="${assessAppraisalDTO}" />
+    <assess:signatureInfo dto="signatureInfoB6" officerName="Name of Interviewing Officer"/>
+  </div>
+  </secPage:dtreeMenu>
+  
+  
+  
+       <!-- edited on 20170228 -->
+     <c:choose>
+     	<c:when test="${isEORoleChecked}">
+     		  <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B7" reportType="C" roleChecked="B7RoleChecked">
+    			<div id="partB7">
+	  			 <assess:partB7Info dto="${assessAppraisalDTO}" /> 
+    			 <assess:signatureInfoB dto="signatureInfoB7" officerLabel="Name of Endorsing Officer" hiddenTel="Y"/>
+  			    </div>
+  			  </secPage:dtreeMenu>
+  
+  			  <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B8" reportType="C" roleChecked="B8RoleChecked">
+   				<div id="partB8">
+    			 <assess:partB8Info dto="${assessAppraisalDTO}"/> 
+     			 <assess:signatureInfoB dto="signatureInfoB8" officerLabel="Name of Reviewing Officer" hiddenTel="Y"/>
+  				</div>
+  			  </secPage:dtreeMenu>
+     	</c:when>
+     	<c:otherwise>
+     		 <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B7" reportType="C" roleChecked="B7RoleNotChecked">
+    			<div id="partB7">
+	  			 <assess:partB7Info dto="${assessAppraisalDTO}" /> 
+    			 <assess:signatureInfoB dto="signatureInfoB7" officerLabel="Name of Endorsing Officer" hiddenTel="Y"/>
+  			    </div>
+  			  </secPage:dtreeMenu>
+  
+  			  <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="B8" reportType="C" roleChecked="B8RoleChecked">
+   				<div id="partB8">
+    			 <assess:partB8Info dto="${assessAppraisalDTO}"/> 
+     			 <assess:signatureInfoB dto="signatureInfoB8" officerLabel="Name of Reviewing Officer" hiddenTel="Y"/>
+  				</div>
+  			  </secPage:dtreeMenu>
+     	</c:otherwise>
+     </c:choose>
+     <!-- end edited on 20170228 -->
+  
+  
+   <secPage:dtreeMenu role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" pageId="PS" reportType="C" roleChecked="PSRoleChecked">
+   <div id="printSubmit">
+    <!-- Print Submit Info -->
+     <assess:printSubmit dto="${assessAppraisalDTO}" />
+  </div>
+  </secPage:dtreeMenu>
+</div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<TR><TD>
+
+<table width="100%" cellpadding="5">
+	<tr>
+		<td align="right" class="btnBars">
+		
+		</td>
+	</tr>
+</table>
+
+<!--  <secPage:buttonBar role="${assessAppraisalDTO.reportUserRole.currentUserRoleStatus}" currentPage="${assessAppraisalDTO.currentPage}" reportType="C" /> -->
+<br/><br/>
+<form:hidden path="reportUserRole.currentReportStatus" id="currentReportStatus" />
+<form:hidden path="reportUserRole.currentOfficerId" id="currentOfficerId" />
+<form:hidden path="reportUserRole.gmId" id="gmId" />
+<form:hidden path="reportUserRole.currentUserRoleStatus" id="currentUserRoleStatus" />
+<form:hidden path="reportUserRole.nextOfficerId" id="nextOfficerIdR" />
+<form:hidden path="reportUserRole.nextOfficerName" id="nextOfficerNameR" />
+<form:hidden path="reportUserRole.nextOfficerDeadline" id="nextOfficerDeadlineR" />
+<form:hidden path="reportUserRole.nextOfficerRole" id="nextOfficerRoleR" />
+
+<form:hidden path="reportId" id="reportId" />
+<form:hidden path="currentPage" id="currentPage" />
+<form:hidden path="actionFlag" id="actionFlag" />
+<form:hidden path="backToListType" id="backToListType" />
+<form:hidden path="pages" id="pages" />
+
+</TD></TR></table>
+
+
+
+</form:form>
+
+</body>
+</html>

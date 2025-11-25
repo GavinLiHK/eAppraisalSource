@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Common Entity Start -->
+		<mapping class="com.hkha.ea.domain.EaBaseEntity" />
+		<mapping class="com.hkha.ea.domain.EaLogin" />
+		<mapping class="com.hkha.ea.domain.EaUser" />
+		<!-- Common Entity End -->
+		<!-- Common Sys_Para Po -->
+		<mapping class="com.hkha.ea.domain.EaSysPara" />
+		<mapping class="com.hkha.ea.domain.EaUserGrp" />
+		<mapping class="com.hkha.ea.domain.EaGroupFunction" />
+		<mapping class="com.hkha.ea.domain.EaGroupFunctionPK" />
+		<mapping class="com.hkha.ea.domain.EaGroupRankPK" />
+		<mapping class="com.hkha.ea.domain.EaGroupRank" />
+		<mapping class="com.hkha.ea.domain.EaWorkflowRole" />
+		<mapping class="com.hkha.ea.domain.EaWorkflowRolePK" />
+		<mapping class="com.hkha.ea.domain.EaWorkflow" />
+		<mapping class="com.hkha.ea.domain.EaReport"/> 
+        <mapping class="com.hkha.ea.domain.EaContract"/> 
+        <mapping class="com.hkha.ea.domain.EaReportRole"/>
+        <mapping class="com.hkha.ea.domain.EaReportRolePK"/> 
+        <mapping class="com.hkha.ea.domain.EaObjectives" />  
+        <mapping class="com.hkha.ea.domain.EaCoreCompetencyPK" />  
+        <mapping class="com.hkha.ea.domain.EaCoreCompetency" /> 
+        <mapping class="com.hkha.ea.domain.EaMessageLog" />
+		<mapping class="com.hkha.ea.domain.EaMessageLogPK" />
+		<mapping class="com.hkha.ea.domain.EaMemoDetails" />
+		<mapping class="com.hkha.ea.domain.EaBatch" />
+		<mapping class="com.hkha.ea.domain.EaTrainPlanPK" />
+		<mapping class="com.hkha.ea.domain.EaTrainPlan" />
+	</session-factory>
+
+</hibernate-configuration>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="AAR_B3"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="526"
+		 pageHeight="400"
+		 columnWidth="526"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<reportFont name="ReportDesc" isDefault="false" fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<reportFont name="ReportTitle" isDefault="false" fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<parameter name="ReportID" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report ID]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("100")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ReportDirectory" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Report Directory]]></parameterDescription>
+		<defaultValueExpression ><![CDATA[new String("C:\\iReport\\reports\\AssessAppraisalReport\\")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sr_pb_sa_box" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString><![CDATA[SELECT C.PERFORMANCE_BONUS_AO, C.SALARY_ADJUSTMENT_AO
+FROM HA_HR_EA_CONTRACT C
+WHERE C.REPORT_ID = $P{ReportID}]]></queryString>
+	<field name="PERFORMANCE_BONUS_AO" class="java.lang.String"/>
+	<field name="SALARY_ADJUSTMENT_AO" class="java.lang.String"/>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="144"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="0"
+						y="0"
+						width="522"
+						height="84"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="txtPartB3Title-1"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" isStyledText="true" lineSpacing="Single">
+						<font fontName="新細明體" pdfFontName="MSung-Light" size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="true" pdfEncoding ="UniCNS-UCS2-H" isStrikeThrough="false" />
+					</textElement>
+				<text><![CDATA[<style isBold="true" pdfFontName="Times-Bold" pdfEncoding="CP1252">Section 3           Recommendation on Granting of Merit Payment and Annual Salary Adjustment</style><style size="2">
+
+</style>第三欄              建議是否給予工作表現獎金及每年薪金調整]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="51"
+						width="526"
+						height="33"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="PB_SA_SubReport"
+						stretchType="NoStretch"
+						positionType="Float"
+						isPrintRepeatedValues="true"
+						isRemoveLineWhenBlank="false"
+						isPrintInFirstWholeBand="false"
+						isPrintWhenDetailOverflows="false"/>
+					<subreportParameter  name="PerformanceBonus">
+						<subreportParameterExpression><![CDATA[$F{PERFORMANCE_BONUS_AO}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SalaryAdjustment">
+						<subreportParameterExpression><![CDATA[$F{SALARY_ADJUSTMENT_AO}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ReportDirectory">
+						<subreportParameterExpression><![CDATA[$P{ReportDirectory}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ShowBoxLayout">
+						<subreportParameterExpression><![CDATA[new java.lang.Boolean(true)]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ReportID">
+						<subreportParameterExpression><![CDATA[$P{ReportID}]]></subreportParameterExpression>
+					</subreportParameter>
+					
+					<!--subreportParameter name="ParSpace">
+						<subreportParameterExpression ><![CDATA[new String("")]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ChiParSpace">
+						<subreportParameterExpression ><![CDATA[new java.lang.String("")]]></subreportParameterExpression>
+					</subreportParameter-->
+					
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<!-- Modified on 20/09/2021 for directly use the jasper objects -->
+					<!--subreportExpression  class="java.lang.String"><![CDATA[$P{ReportDirectory}+ "PB_SA_Box.jasper"]]></subreportExpression-->
+					<subreportExpression><![CDATA[$P{sr_pb_sa_box}]]></subreportExpression>
+					<!-- End Modified on 20/09/2021 for directly use the jasper objects -->
+				</subreport>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>
